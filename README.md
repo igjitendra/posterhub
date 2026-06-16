@@ -1,51 +1,76 @@
 # PosterHub — Free Posters Website
 
-एक static website जो GitHub Pages पर चलती है। इसमें Good Morning, Good Night, Devotional (सोमवार–रविवार) और Festival posters फ़्री download के लिए होते हैं।
+एक fast, SEO-ready static website जो GitHub Pages पर चलती है। Good Morning, Good Night, Devotional (सोमवार–रविवार) और Festival posters फ़्री download और share के लिए।
 
-Posters **random order** में दिखते हैं और **एक बार में 10** के हिसाब से (pages में) load होते हैं।
+- Posters **random order** में दिखते हैं, **All tab** default है (सभी category एक साथ)।
+- हर image पर **watermark** (ऊपर center, 50% opacity) — download की गई image में भी जुड़ता है।
+- हर image के नीचे **WhatsApp / Facebook / Instagram / X** share buttons।
+- Single category में **10 posters per page** + pagination।
 
 ## 📁 Folder structure
 
 ```
-index.html          ← मुख्य page
+index.html          ← मुख्य page (free users)
 posters.json        ← सभी posters की list (manifest)
+robots.txt          ← SEO crawler instructions
+sitemap.xml         ← SEO sitemap
+site.webmanifest    ← PWA / browser manifest
 /assets
-  /good-morning     → gm1.jpg, gm2.jpg ...
+  /good-morning     → gm1.jpg ...
   /good-night       → gn1.jpg ...
-  /devotional
-    /monday ... /sunday
-  /festival
-    /holi  /diwali ...
+  /devotional/{monday..sunday}
+  /festival/{holi,diwali}
 ```
 
-## ➕ नया poster कैसे जोड़ें (रास्ता 1 — Manifest)
+## ➕ नया poster जोड़ना (रास्ता 1 — Manifest)
 
-1. अपनी image (जैसे `gm2.jpg`) सही folder में डालें, उदा. `assets/good-morning/`।
-2. `posters.json` खोलें और उस category के `posters` array में एक line जोड़ें:
+1. image सही folder में डालें (जैसे `assets/good-morning/gm2.jpg`)।
+2. `posters.json` में उस category के `posters` array में जोड़ें:
 
 ```json
 { "file": "gm2.jpg", "title": "Good Morning" }
 ```
 
-3. बस! नया poster site पर दिखने लगेगा (क्रम random रहेगा)।
+3. बस! कोई date की ज़रूरत नहीं। Devotional के लिए सही दिन (monday…sunday) और Festival के लिए सही festival sub में जोड़ें।
 
-- **Devotional** के लिए सही दिन के sub (monday…sunday) के `posters` में जोड़ें।
-- **Festival** के लिए सही festival (holi, diwali…) के `posters` में जोड़ें।
-- नया festival जोड़ना हो तो `assets/festival/` में नया folder बनाएँ और `posters.json` के festival `subs` में नया block जोड़ें।
+### Brand / watermark / share text
+`posters.json` के `site` block से control होता है:
+```json
+"site": {
+  "brand": "PosterHub",
+  "tagline": "...",
+  "url": "",            // अपनी live website URL यहाँ डालें (share के लिए)
+  "shareText": "...",   // share पर जाने वाला about text
+  "watermark": "PosterHub" // न हो तो brand use होगा
+}
+```
 
-> Note: `title` वैकल्पिक है। कोई date की ज़रूरत नहीं।
+## 🚀 GitHub Pages पर publish
 
-## 🚀 GitHub Pages पर publish कैसे करें
+1. नया GitHub repository बनाएँ और इस folder की सारी files upload करें।
+2. **Settings → Pages** में Source = `main / root` चुनें।
+3. कुछ मिनट में site `https://<username>.github.io/<repo>/` पर live हो जाएगी।
 
-1. एक नया GitHub repository बनाएँ।
-2. इस folder की सारी files (index.html, posters.json, assets/) upload करें।
-3. repo की **Settings → Pages** में जाकर Source = `main branch / root` चुनें।
-4. कुछ मिनट में आपकी site `https://<username>.github.io/<repo>/` पर live हो जाएगी।
+## 🔎 SEO setup (ज़रूरी)
+
+Live URL मिलने के बाद इन जगहों पर `https://posterhub.example.com/` को अपनी असली URL से बदलें:
+
+- `index.html` — `canonical`, `og:url`, `og:image`, `twitter:image`, और तीनों JSON-LD blocks।
+- `robots.txt` — Sitemap line।
+- `sitemap.xml` — दोनों `<loc>` URLs।
+- `posters.json` — `site.url`।
+
+फिर [Google Search Console](https://search.google.com/search-console) में site verify करके `sitemap.xml` submit कर दें।
+
+### शामिल SEO features
+- Title + meta description + keywords
+- Open Graph + Twitter Card tags (social preview)
+- JSON-LD: WebSite + SearchAction, Organization, FAQPage
+- Semantic HTML, image alt text, FAQ section
+- robots.txt + sitemap.xml + web manifest + theme-color + favicon
 
 ## 💡 Ads
-
-`index.html` में "Advertisement" लिखे box (ad slots) हैं। वहाँ आप अपना Google AdSense या कोई और ad code पेस्ट कर सकते हैं।
+"Advertisement" वाले box में अपना Google AdSense code पेस्ट करें।
 
 ## ⭐ Pro page
-
-यह Free users का page है। Pro users के लिए अलग page (`pro.html`) बाद में जोड़ा जाएगा।
+यह Free users का page है। Pro users के लिए अलग `pro.html` बाद में जोड़ा जाएगा।

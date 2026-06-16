@@ -1,0 +1,12 @@
+{
+  "name": "PosterHub — Free HD Posters",
+  "short_name": "PosterHub",
+  "description": "Free HD Good Morning, Good Night, Devotional & Festival posters to download and share.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f6f4f2",
+  "theme_color": "#e8418c",
+  "lang": "hi",
+  "icons": []
+}
