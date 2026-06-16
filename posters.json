@@ -3,8 +3,10 @@
     "brand": "PosterHub",
     "tagline": "हज़ारों सुंदर posters — फ़्री Download करें",
     "url": "",
+    "watermark": "@JitendraUno",
     "shareText": "PosterHub से यह खूबसूरत poster 🌸 — रोज़ नए Good Morning, Good Night, Devotional और Festival posters फ़्री में डाउनलोड करें! 👇"
   },
+  "daily": { "folder": "assets/daily", "ext": "jpg" },
   "categories": [
     {
       "key": "good-morning",

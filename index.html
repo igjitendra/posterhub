@@ -23,7 +23,7 @@
 <meta name="twitter:title" content="PosterHub — Free HD Posters">
 <meta name="twitter:description" content="Good Morning, Good Night, Devotional & Festival posters — free HD download & share.">
 <meta name="twitter:image" content="https://posterhub.example.com/assets/good-morning/gm1.jpg">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"PosterHub","alternateName":"PosterHub Free Posters","url":"https://posterhub.example.com/","description":"Free HD Good Morning, Good Night, Devotional and Festival posters to download and share.","inLanguage":"hi","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://posterhub.example.com/?q={search_term_string}"},"query-input":"required name=search_term_string"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"PosterHub","alternateName":"PosterHub Free Posters","url":"https://posterhub.example.com/","description":"Free HD Good Morning, Good Night, Devotional and Festival posters to download and share.","inLanguage":"hi","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://posterhub.example.com/?q=SEARCH_TERMS"},"query-input":"required name=search_term_string"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"PosterHub","url":"https://posterhub.example.com/","logo":"https://posterhub.example.com/assets/good-morning/gm1.jpg","sameAs":[]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"क्या PosterHub के posters फ़्री हैं?","acceptedAnswer":{"@type":"Answer","text":"हाँ, सभी posters पूरी तरह फ़्री हैं। आप बिना किसी signup के HD posters download और share कर सकते हैं।"}},{"@type":"Question","name":"कौन-कौन सी categories उपलब्ध हैं?","acceptedAnswer":{"@type":"Answer","text":"Good Morning, Good Night, Devotional (सोमवार से रविवार) और Festival (होली, दिवाली सहित सभी त्योहार)।"}},{"@type":"Question","name":"पोस्टर कैसे share करें?","acceptedAnswer":{"@type":"Answer","text":"हर poster के नीचे WhatsApp, Facebook, Instagram और X के share buttons हैं — एक click में share करें।"}}]}</script>
 <style>
@@ -57,7 +57,6 @@
     color:#fff; background:linear-gradient(135deg,#7b5cff,#b14df0); box-shadow:0 4px 12px rgba(123,92,255,.4); transition:.15s; }
   .pro-btn:hover{ filter:brightness(1.08); transform:translateY(-1px); }
 
-  /* ===== Premium Landing Hero ===== */
   .hero{ position:relative; overflow:hidden; min-height:clamp(600px,94vh,940px); display:flex; align-items:center; justify-content:center; text-align:center; padding:80px 18px 64px; }
   .hero-bg{ position:absolute; inset:-12% -6%; display:flex; gap:16px; justify-content:center; z-index:0; pointer-events:none; transform:rotate(-8deg) scale(1.25); }
   .hero-col{ display:flex; flex-direction:column; gap:16px; animation:scrollUp 38s linear infinite; will-change:transform; }
@@ -99,7 +98,26 @@
   .scroll-hint{ position:absolute; bottom:18px; left:50%; transform:translateX(-50%); z-index:2; color:var(--faint); font-size:22px; animation:bob 2s infinite; }
   @keyframes bob{ 0%,100%{ transform:translate(-50%,0);} 50%{ transform:translate(-50%,8px);} }
 
-  .cats{ display:grid; grid-template-columns:repeat(5,1fr); gap:10px; max-width:880px; margin:36px auto 0; padding:0 18px; scroll-margin-top:70px; }
+  /* Daily stories */
+  .daily{ max-width:1100px; margin:30px auto 0; padding:0 18px; }
+  .daily-head{ display:flex; align-items:baseline; gap:10px; margin-bottom:4px; flex-wrap:wrap; }
+  .daily-head h2{ margin:0; font-size:20px; letter-spacing:-.02em; }
+  .daily-head span{ font-size:12.5px; color:var(--soft); font-weight:600; }
+  .stories{ display:flex; gap:14px; overflow-x:auto; padding:12px 2px; scrollbar-width:none; }
+  .stories::-webkit-scrollbar{ display:none; }
+  .story{ flex:0 0 auto; display:flex; flex-direction:column; align-items:center; gap:7px; width:80px; cursor:pointer; }
+  .story .ring{ width:72px; height:72px; border-radius:50%; padding:3px; background:linear-gradient(135deg,var(--brand1),var(--brand2)); transition:transform .15s; }
+  .story:hover .ring{ transform:scale(1.06); }
+  .story.today .ring{ background:linear-gradient(135deg,#7b5cff,#b14df0); }
+  .story .ring img{ width:100%; height:100%; border-radius:50%; object-fit:cover; border:2.5px solid var(--bg); background:var(--surface); }
+  .story .ring .ph{ width:100%; height:100%; border-radius:50%; display:grid; place-items:center; font-size:22px; background:var(--surface); border:2.5px solid var(--bg); color:var(--faint); }
+  .story.empty{ cursor:default; }
+  .story.empty .ring{ background:var(--border); }
+  .story .d{ font-size:12.5px; font-weight:800; }
+  .story .dd{ font-size:10.5px; color:var(--soft); font-weight:600; }
+  .story.today .d{ color:#8b5cf6; }
+
+  .cats{ display:grid; grid-template-columns:repeat(5,1fr); gap:10px; max-width:880px; margin:30px auto 0; padding:0 18px; scroll-margin-top:70px; }
   .cat{ position:relative; display:flex; flex-direction:column; align-items:center; gap:8px; padding:16px 6px; border-radius:var(--radius);
     background:var(--surface); border:1.5px solid var(--border-soft); box-shadow:var(--shadow); cursor:pointer;
     transition:transform .16s, box-shadow .16s; font-weight:700; font-size:12.5px; text-align:center; overflow:hidden; }
@@ -145,12 +163,12 @@
   .imgwrap{ position:relative; aspect-ratio:1/1.18; overflow:hidden; background:var(--border-soft); cursor:pointer; container-type:inline-size; }
   .imgwrap img{ width:100%; height:100%; object-fit:cover; transition:transform .35s ease; }
   .card:hover .imgwrap img{ transform:scale(1.06); }
-  .wm{ position:absolute; top:5%; left:0; right:0; text-align:center; pointer-events:none; z-index:3;
-    font-weight:800; letter-spacing:.04em; color:#fff; opacity:.5; font-size:clamp(11px, 9cqw, 48px);
-    text-shadow:0 1px 5px rgba(0,0,0,.5); }
+  .wm{ position:absolute; bottom:5%; left:0; right:0; text-align:center; pointer-events:none; z-index:3;
+    font-weight:700; letter-spacing:.06em; color:#fff; opacity:.5; font-size:clamp(8px, 5cqw, 24px);
+    text-shadow:0 1px 4px rgba(0,0,0,.55); }
   .tag{ position:absolute; top:10px; left:10px; padding:4px 10px; border-radius:999px; font-size:10.5px; font-weight:700;
     color:#fff; background:rgba(0,0,0,.5); backdrop-filter:blur(4px); z-index:4; }
-  .zoom{ position:absolute; right:10px; bottom:10px; width:30px; height:30px; border-radius:50%; display:grid; place-items:center;
+  .zoom{ position:absolute; right:10px; top:10px; width:30px; height:30px; border-radius:50%; display:grid; place-items:center;
     background:rgba(0,0,0,.5); color:#fff; font-size:14px; opacity:0; transition:.2s; z-index:4; }
   .card:hover .zoom{ opacity:1; }
   .meta{ padding:12px 13px 14px; }
@@ -177,7 +195,6 @@
   .pager button:disabled{ opacity:.4; cursor:not-allowed; }
   .pager .dots{ color:var(--faint); padding:0 4px; }
 
-  /* SEO content + FAQ */
   .seo{ max-width:900px; margin:46px auto 0; padding:0 18px; }
   .seo h2{ font-size:24px; letter-spacing:-.02em; margin:0 0 12px; }
   .seo p{ color:var(--soft); line-height:1.7; font-size:15px; }
@@ -200,6 +217,19 @@
   .lb-dl{ color:#fff; background:linear-gradient(135deg,var(--brand1),var(--brand2)); }
   .lb-close{ color:#fff; background:rgba(255,255,255,.18); }
   .lb-share{ display:flex; gap:9px; justify-content:center; margin-top:14px; }
+
+  /* Download modal (ad + countdown) */
+  .dlm{ position:fixed; inset:0; z-index:120; display:none; align-items:center; justify-content:center; padding:18px; background:rgba(0,0,0,.78); backdrop-filter:blur(5px); }
+  .dlm.open{ display:flex; animation:fadeUp .25s ease; }
+  .dlm-box{ background:var(--surface); border-radius:18px; max-width:380px; width:100%; padding:18px; text-align:center; box-shadow:0 30px 80px rgba(0,0,0,.5); position:relative; }
+  .dlm-ad{ min-height:200px; display:flex; align-items:center; justify-content:center; border:1px dashed var(--border); border-radius:12px; color:var(--faint); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; margin-bottom:16px; background:repeating-linear-gradient(45deg, rgba(0,0,0,.02), rgba(0,0,0,.02) 12px, transparent 12px, transparent 24px); }
+  .dlm-status{ font-size:14px; color:var(--soft); margin-bottom:10px; }
+  .dlm-status b{ color:var(--brand1); font-size:18px; }
+  .dlm-bar{ height:7px; border-radius:999px; background:var(--border-soft); overflow:hidden; margin-bottom:14px; }
+  .dlm-bar i{ display:block; height:100%; width:0; border-radius:999px; background:linear-gradient(135deg,var(--brand1),var(--brand2)); transition:width 1s linear; }
+  .dlm-btn{ width:100%; padding:13px; border-radius:12px; border:none; font-weight:800; font-size:15px; color:#fff; background:linear-gradient(135deg,var(--brand1),var(--brand2)); cursor:pointer; transition:.15s; }
+  .dlm-btn:disabled{ opacity:.55; cursor:not-allowed; filter:grayscale(.3); }
+  .dlm-x{ position:absolute; top:9px; right:12px; background:none; border:none; font-size:18px; color:var(--faint); cursor:pointer; }
 
   .ftr{ margin-top:40px; background:#141414; color:#fff; padding:40px 18px 26px; }
   @media (prefers-color-scheme: dark){ .ftr{ background:#070708; } }
@@ -244,6 +274,11 @@
       </div>
     </div>
     <div class="scroll-hint">↓</div>
+  </section>
+
+  <section class="daily">
+    <div class="daily-head"><h2>📅 Daily Posters</h2><span>आने वाले 7 दिन · रोज़ अपडेट</span></div>
+    <div class="stories" id="stories"></div>
   </section>
 
   <nav class="cats" id="cats" aria-label="Poster categories"></nav>
@@ -300,6 +335,16 @@
     <div class="copy">© 2026 PosterHub. All posters by the PosterHub team.</div>
   </footer>
 
+  <div class="dlm" id="dlModal" onclick="if(event.target===this)closeDl()">
+    <div class="dlm-box">
+      <button class="dlm-x" onclick="closeDl()">✕</button>
+      <div class="dlm-ad">Advertisement — 300 × 250</div>
+      <div class="dlm-status" id="dlStatus">Download शुरू होने में <b id="dlCount">10</b> सेकंड…</div>
+      <div class="dlm-bar"><i id="dlBar"></i></div>
+      <button class="dlm-btn" id="dlGo" disabled>⏳ रुकिए…</button>
+    </div>
+  </div>
+
   <div class="lb" id="lb" onclick="if(event.target===this)closeLb()">
     <div class="lb-inner">
       <div class="lb-imgwrap"><img id="lbImg" src="" alt=""><span class="wm" id="lbWm"></span></div>
@@ -314,8 +359,9 @@
 <script>
   const PAGE_SIZE = 10;
   let DATA=null, current=null, POOL=[], page=1;
-  let ABOUT='', SITE='', WM='PosterHub';
+  let ABOUT='', SITE='', WM='@JitendraUno';
   let lbSrc='', lbTitle='';
+  let dlTimer=null, dlPending=null;
 
   const IC = {
     wa:'<svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.157 5.335 5.492 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.516 5.26l-.999 3.648 3.972-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>',
@@ -341,13 +387,15 @@
     }
     ABOUT = (DATA.site && DATA.site.shareText) || 'PosterHub से यह सुंदर poster — फ़्री download करें:';
     SITE  = (DATA.site && DATA.site.url) || (location.origin + location.pathname);
-    WM    = (DATA.site && (DATA.site.watermark || DATA.site.brand)) || 'PosterHub';
+    WM    = (DATA.site && (DATA.site.watermark || DATA.site.brand)) || '@JitendraUno';
     if(DATA.site && DATA.site.tagline) document.getElementById('tagline').textContent = DATA.site.tagline;
     buildCats();
     buildQuick();
     buildHeroMosaic();
+    buildDaily();
     let total=0; DATA.categories.forEach(c=> total += countCat(c));
     document.getElementById('statCount').textContent = total + '+';
+    document.getElementById('dlGo').onclick=()=>{ if(dlPending) doDownload(dlPending.src, dlPending.title); closeDl(); };
     go('all');
     const qp=new URLSearchParams(location.search).get('q');
     if(qp){ document.getElementById('search').value=qp; document.getElementById('heroInput').value=qp; renderAll(); }
@@ -391,6 +439,28 @@
     const q=document.getElementById('quick');
     q.innerHTML=DATA.categories.map(c=>'<button onclick="go(\''+c.key+'\')">'+(c.icon||'')+' '+c.label+'</button>').join('');
   }
+
+  function buildDaily(){
+    const cfg=(DATA && DATA.daily) || {folder:'assets/daily', ext:'jpg'};
+    const wrap=document.getElementById('stories');
+    const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const DN=['रवि','सोम','मंगल','बुध','गुरु','शुक्र','शनि'];
+    const today=new Date(); let html='';
+    for(let i=0;i<7;i++){
+      const d=new Date(today); d.setDate(today.getDate()+i);
+      const mm=String(d.getMonth()+1).padStart(2,'0'), dd=String(d.getDate()).padStart(2,'0');
+      const src=cfg.folder+'/'+mm+'-'+dd+'.'+(cfg.ext||'jpg');
+      const label=d.getDate()+' '+M[d.getMonth()];
+      html+='<div class="story'+(i===0?' today':'')+'" data-src="'+src+'" data-label="'+label+'" onclick="dailyOpen(this)">'
+        +'<div class="ring"><img loading="lazy" src="'+src+'" alt="'+label+' poster" onerror="dailyMiss(this)"></div>'
+        +'<div class="d">'+label+'</div>'
+        +'<div class="dd">'+(i===0?'आज':DN[d.getDay()])+'</div>'
+      +'</div>';
+    }
+    wrap.innerHTML=html;
+  }
+  function dailyMiss(img){ const r=img.closest('.ring'); img.closest('.story').classList.add('empty'); r.innerHTML='<div class="ph">📷</div>'; }
+  function dailyOpen(el){ if(el.classList.contains('empty')) return; openLb(el.dataset.src, 'Daily ' + el.dataset.label); }
 
   function buildCats(){
     const wrap = document.getElementById('cats');
@@ -566,19 +636,19 @@
     cv.width = img.naturalWidth; cv.height = img.naturalHeight;
     const ctx = cv.getContext('2d');
     ctx.drawImage(img, 0, 0);
-    const fs = Math.max(cv.width*0.06, 22);
-    ctx.font = '800 '+fs+'px sans-serif';
-    ctx.textAlign='center'; ctx.textBaseline='top';
-    const y = cv.height*0.05;
-    ctx.lineWidth = Math.max(fs*0.06, 2);
-    ctx.strokeStyle = 'rgba(0,0,0,.35)';
+    const fs = Math.max(cv.width*0.038, 14);
+    ctx.font = '700 '+fs+'px sans-serif';
+    ctx.textAlign='center'; ctx.textBaseline='bottom';
+    const y = cv.height*0.96;
+    ctx.lineWidth = Math.max(fs*0.08, 2);
+    ctx.strokeStyle = 'rgba(0,0,0,.4)';
     ctx.strokeText(WM, cv.width/2, y);
-    ctx.fillStyle = 'rgba(255,255,255,.5)';
+    ctx.fillStyle = 'rgba(255,255,255,.55)';
     ctx.fillText(WM, cv.width/2, y);
     return await new Promise(r=> cv.toBlob(r, 'image/jpeg', 0.92));
   }
 
-  async function dl(src, title){
+  async function doDownload(src, title){
     const name = (title||'poster').replace(/[^\w\u0900-\u097F-]+/g,'_') || 'poster';
     try{
       const blob = await makeWatermarked(src);
@@ -591,6 +661,25 @@
       document.body.appendChild(a); a.click(); a.remove();
     }
   }
+
+  function dl(src, title){ dlPending={src:src, title:title}; openDl(); }
+
+  function openDl(){
+    const m=document.getElementById('dlModal'); m.classList.add('open');
+    const bar=document.getElementById('dlBar'), go=document.getElementById('dlGo'), st=document.getElementById('dlStatus');
+    let n=10;
+    go.disabled=true; go.textContent='⏳ रुकिए…';
+    st.innerHTML='Download शुरू होने में <b id="dlCount">'+n+'</b> सेकंड…';
+    bar.style.width='0%';
+    clearInterval(dlTimer);
+    dlTimer=setInterval(()=>{
+      n--;
+      const cEl=document.getElementById('dlCount'); if(cEl) cEl.textContent=n;
+      bar.style.width=((10-n)/10*100)+'%';
+      if(n<=0){ clearInterval(dlTimer); st.innerHTML='✅ आपका poster तैयार है!'; go.disabled=false; go.textContent='⬇ Download अब'; }
+    },1000);
+  }
+  function closeDl(){ clearInterval(dlTimer); document.getElementById('dlModal').classList.remove('open'); }
 
   function openLb(src, title){
     lbSrc=src; lbTitle=title||'PosterHub';
@@ -606,7 +695,7 @@
     document.getElementById('lb').classList.add('open');
   }
   function closeLb(){ document.getElementById('lb').classList.remove('open'); }
-  document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLb(); });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeLb(); closeDl(); } });
 
   init();
 </script>
