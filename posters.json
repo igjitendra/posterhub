@@ -1,0 +1,55 @@
+{
+  "site": {
+    "brand": "PosterHub",
+    "tagline": "हज़ारों सुंदर posters — फ़्री Download करें",
+    "url": "",
+    "shareText": "PosterHub से यह खूबसूरत poster 🌸 — रोज़ नए Good Morning, Good Night, Devotional और Festival posters फ़्री में डाउनलोड करें! 👇"
+  },
+  "categories": [
+    {
+      "key": "good-morning",
+      "label": "Good Morning",
+      "icon": "🌅",
+      "folder": "assets/good-morning",
+      "posters": [
+        { "file": "gm1.jpg", "title": "Good Morning" }
+      ]
+    },
+    {
+      "key": "good-night",
+      "label": "Good Night",
+      "icon": "🌙",
+      "folder": "assets/good-night",
+      "posters": [
+        { "file": "gn1.jpg", "title": "शुभ रात्रि" }
+      ]
+    },
+    {
+      "key": "devotional",
+      "label": "Devotional",
+      "icon": "🪔",
+      "folder": "assets/devotional",
+      "subs": [
+        { "key": "monday",    "label": "सोमवार",  "folder": "assets/devotional/monday",    "posters": [] },
+        { "key": "tuesday",   "label": "मंगलवार", "folder": "assets/devotional/tuesday",   "posters": [] },
+        { "key": "wednesday", "label": "बुधवार",  "folder": "assets/devotional/wednesday", "posters": [] },
+        { "key": "thursday",  "label": "गुरुवार", "folder": "assets/devotional/thursday",  "posters": [] },
+        { "key": "friday",    "label": "शुक्रवार","folder": "assets/devotional/friday",    "posters": [] },
+        { "key": "saturday",  "label": "शनिवार",  "folder": "assets/devotional/saturday",  "posters": [] },
+        { "key": "sunday",    "label": "रविवार",  "folder": "assets/devotional/sunday",    "posters": [
+            { "file": "sunday1.jpg", "title": "शुभ रविवार" }
+        ] }
+      ]
+    },
+    {
+      "key": "festival",
+      "label": "Festival",
+      "icon": "🎪",
+      "folder": "assets/festival",
+      "subs": [
+        { "key": "holi",   "label": "होली",  "folder": "assets/festival/holi",   "posters": [] },
+        { "key": "diwali", "label": "दिवाली","folder": "assets/festival/diwali", "posters": [] }
+      ]
+    }
+  ]
+}
