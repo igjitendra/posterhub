@@ -4,20 +4,22 @@ let DATA = null, current = null, POOL = [], page = 1;
 const PAGE_SIZE = 12;
 let SESSION = loadSession();
 let payPlan = null;
+let _dataLoaded = false, _landingInit = false;
 const IC = { wa:'🟢', fb:'f', ig:'◎', x:'𝕏' };
 
 const $ = id => document.getElementById(id);
-function toast(msg, ok){ const t=$('toast'); t.textContent=msg; t.className='toast show '+(ok?'ok':'err'); clearTimeout(t._t); t._t=setTimeout(()=>{t.className='toast';},3400); }
+function toast(msg, ok){ const t=$('toast'); if(!t) return; t.textContent=msg; t.className='toast show '+(ok?'ok':'err'); clearTimeout(t._t); t._t=setTimeout(()=>{t.className='toast';},3600); }
 
-/* ---------- session ---------- */
+/* ===================== SESSION (permanent login) ===================== */
 function loadSession(){ try{ return JSON.parse(localStorage.getItem('ph_pro')||'null'); }catch(e){ return null; } }
-function saveSession(s){ SESSION=s; localStorage.setItem('ph_pro', JSON.stringify(s)); updateAuthUI(); }
-function clearSession(){ SESSION=null; localStorage.removeItem('ph_pro'); updateAuthUI(); }
+function saveSession(s){ SESSION=s; try{ localStorage.setItem('ph_pro', JSON.stringify(s)); }catch(e){} updateAuthUI(); }
+function clearSession(){ SESSION=null; try{ localStorage.removeItem('ph_pro'); }catch(e){} updateAuthUI(); }
+function loggedIn(){ return !!(SESSION && SESSION.token); }
 function isActive(){ if(!SESSION||SESSION.status!=='active'||!SESSION.expiry) return false; const e=new Date(SESSION.expiry); const t=new Date(); t.setHours(0,0,0,0); return e>=t; }
 function planRank(){ if(!isActive()) return 0; const p=CFG.PLANS[SESSION.plan]; return p?p.rank:0; }
 function planLabel(){ if(!isActive()) return null; const p=CFG.PLANS[SESSION.plan]; return p?p.name:null; }
 
-/* ---------- api ---------- */
+/* ===================== API ===================== */
 async function api(action, data){
   if(!CFG.API_URL || CFG.API_URL.indexOf('PASTE')===0) throw new Error('Backend अभी जुड़ा नहीं — config.js में Apps Script URL डालें।');
   const res = await fetch(CFG.API_URL, { method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(Object.assign({action}, data||{})) });
@@ -27,25 +29,55 @@ async function api(action, data){
   return j;
 }
 
-/* ---------- init ---------- */
-async function init(){
-  updateAuthUI();
-  try{ DATA = await (await fetch('posters.json')).json(); }
-  catch(e){ $('content').innerHTML='<div class="empty">posters.json load नहीं हुआ। (साइट को host/serve करके खोलें)</div>'; return; }
-  buildCats();
-  go('all');
-  const cv=$('edCanvas');
-  cv.addEventListener('mousedown', edStart); window.addEventListener('mousemove', edMove); window.addEventListener('mouseup', edEnd);
-  cv.addEventListener('touchstart', edStart, {passive:false}); cv.addEventListener('touchmove', edMove, {passive:false}); cv.addEventListener('touchend', edEnd);
-  if(SESSION && SESSION.token) refreshPlan();
+/* ===================== ROUTER ===================== */
+const ROUTES = { '':'landing', '#':'landing', '#/':'landing', '#/home':'landing', '#/pricing':'pricing', '#/login':'login', '#/signup':'signup', '#/app':'app' };
+function showView(name){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('show'));
+  const el=$('view-'+name); if(el) el.classList.add('show');
+  document.body.classList.toggle('in-app', name==='app');
+  window.scrollTo(0,0);
 }
+function router(){
+  const h = location.hash; let name = (ROUTES[h]!==undefined) ? ROUTES[h] : 'landing';
+  showView(name);
+  if(name==='app'){ ensureData(); }
+  if(name==='pricing'){ renderPricing(); }
+  if(name==='login' || name==='signup'){ /* forms ready in markup */ }
+  if(name==='landing'){ initLanding(); }
+  updateAuthUI();
+  closeAllModals();
+}
+function navTo(h){ if(location.hash===h){ router(); } else { location.hash=h; } }
+window.addEventListener('hashchange', router);
+
+/* ===================== INIT ===================== */
+async function init(){
+  SESSION = loadSession();
+  updateAuthUI();
+  router();
+  if(loggedIn()) refreshPlan();
+}
+async function ensureData(){
+  if(_dataLoaded) return;
+  try{
+    DATA = await (await fetch('posters.json')).json();
+    _dataLoaded = true;
+    buildCats(); go('all');
+    buildShowcase();
+  }catch(e){
+    const c=$('content'); if(c) c.innerHTML='<div class="empty">posters.json load नहीं हुआ। (साइट को host/serve करके खोलें)</div>';
+  }
+}
+// permanent login: कभी session clear नहीं करते — सिर्फ plan info refresh करते हैं
 async function refreshPlan(){
-  try{ const j=await api('checkPlan',{email:SESSION.email, token:SESSION.token});
-    saveSession(Object.assign({}, SESSION, {plan:j.plan, expiry:j.expiry, status:j.status, name:j.name})); render();
-  }catch(e){ if(String(e.message).indexOf('session')>=0){ clearSession(); } }
+  try{
+    const j = await api('checkPlan',{email:SESSION.email, token:SESSION.token});
+    saveSession(Object.assign({}, SESSION, {plan:j.plan, expiry:j.expiry, status:j.status, name:j.name, whatsapp:j.whatsapp||SESSION.whatsapp}));
+    if(_dataLoaded) render();
+  }catch(e){ /* network/expiry — फिर भी logged-in रखते हैं */ }
 }
 
-/* ---------- data helpers ---------- */
+/* ===================== DATA HELPERS ===================== */
 function item(p,c,s){ return { file:p.file, title:p.title||'Poster', folder:(s?s.folder:(c?c.folder:''))||p.folder, exclusive:!!p.exclusive, personalize:!!p.personalize, cat:c?c.label:'', sub:s?s.label:'' }; }
 function allItems(){ let out=[];
   (DATA.categories||[]).forEach(c=>{ if(c.posters) c.posters.forEach(p=>out.push(item(p,c))); if(c.subs) c.subs.forEach(s=>(s.posters||[]).forEach(p=>out.push(item(p,c,s)))); });
@@ -61,7 +93,7 @@ function catItems(key){
 function canAccess(p){ const r=planRank(); if(p.exclusive) return r>=2; return r>=1; }
 function absSrc(p){ return p.folder+'/'+p.file; }
 
-/* ---------- cats + daily ---------- */
+/* ===================== CATS + DAILY ===================== */
 function buildCats(){
   const cats=[{key:'all',label:'All',icon:'✨'}].concat((DATA.categories||[]).map(c=>({key:c.key,label:c.label,icon:c.icon}))).concat([{key:'premium',label:'Premium',icon:'👑'}]);
   $('cats').innerHTML=cats.map(c=>`<button class="cat" data-key="${c.key}" onclick="go('${c.key}')">${c.icon} ${c.label}</button>`).join('');
@@ -69,8 +101,10 @@ function buildCats(){
 }
 function buildDaily(){
   const cfg=DATA.daily, row=$('daily'); if(!cfg){ row.style.display='none'; return; }
-  const days=cfg.days||{}, M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], now=new Date(); let html='';
-  for(let i=0;i<7;i++){ const d=new Date(now); d.setDate(now.getDate()+i);
+  const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const days=cfg.days||{}; let html=''; const today=new Date();
+  for(let i=0;i<10;i++){
+    const d=new Date(today); d.setDate(today.getDate()-i);
     const dd=('0'+d.getDate()).slice(-2), mm=('0'+(d.getMonth()+1)).slice(-2), key=dd+'-'+mm;
     const day=days[key], has=day&&day.posters&&day.posters.length, thumb=has?(cfg.base+'/'+key+'/'+day.posters[0].file):'';
     const lab=dd+' '+M[d.getMonth()];
@@ -101,8 +135,9 @@ function go(key, subKey){
 }
 function onSearch(){ page=1; render(); }
 
-/* ---------- render ---------- */
+/* ===================== RENDER ===================== */
 function render(){
+  if(!$('content')) return;
   const q=($('search').value||'').toLowerCase().trim();
   const items=q?POOL.filter(p=>(p.title||'').toLowerCase().includes(q)||(p.cat||'').toLowerCase().includes(q)):POOL;
   const c=$('content'); $('count').textContent=items.length+' posters';
@@ -131,12 +166,12 @@ function cardHTML(p,i){
 function renderPager(pages){ if(pages<=1){ $('pager').innerHTML=''; return; } let h=''; for(let i=1;i<=pages;i++) h+=`<button class="pg ${i===page?'active':''}" onclick="gotoPage(${i})">${i}</button>`; $('pager').innerHTML=h; }
 function gotoPage(p){ page=p; render(); window.scrollTo({top:$('content').offsetTop-70,behavior:'smooth'}); }
 
-/* ---------- download (top brand strip + clean poster) ---------- */
+/* ===================== DOWNLOAD (top brand strip + clean poster) ===================== */
 async function dl(src,title,exclusive){
-  if(!SESSION){ toast('पहले login करें',false); openAuth(); return; }
+  if(!loggedIn()){ toast('पहले login करें',false); navTo('#/login'); return; }
   const r=planRank();
-  if(r<1){ toast('Download के लिए plan ज़रूरी है',false); openPlans(); return; }
-  if(exclusive&&r<2){ toast('यह poster सिर्फ Advance Plus में',false); openPlans(); return; }
+  if(r<1){ toast('Download के लिए plan ज़रूरी है',false); navTo('#/pricing'); return; }
+  if(exclusive&&r<2){ toast('यह poster सिर्फ Advance Plus में',false); navTo('#/pricing'); return; }
   try{ const img=await loadImg(src); const cv=buildPosterCanvas(img,{topText:CFG.PAYEE_NAME||CFG.BRAND}); downloadCanvas(cv,fileName(title)); toast('Download हो रहा है ✓',true); }
   catch(e){ toast('Download नहीं हुआ',false); }
 }
@@ -174,25 +209,31 @@ function buildPosterCanvas(img, opt){
   return cv;
 }
 
-/* ---------- personalize editor (Advance Plus) ---------- */
-let ed={poster:null,photo:{img:null,x:0,y:0,size:0,shape:'circle'},scale:1,title:'',_drag:false};
+/* ===================== PERSONALIZE EDITOR (Advance Plus) ===================== */
+let ed={poster:null,photo:{img:null,x:0,y:0,size:0,shape:'circle'},scale:1,title:'',_drag:false,_wired:false};
 async function openEditor(src,title){
-  if(!SESSION){ openAuth(); return; }
-  if(planRank()<2){ toast('Personalize सिर्फ Advance Plus में',false); openPlans(); return; }
+  if(!loggedIn()){ navTo('#/login'); return; }
+  if(planRank()<2){ toast('Personalize सिर्फ Advance Plus में',false); navTo('#/pricing'); return; }
   let img; try{ img=await loadImg(src); }catch(e){ toast('Image load नहीं हुई',false); return; }
   ed.poster={img,w:img.naturalWidth,h:img.naturalHeight};
   ed.photo={img:null,x:img.naturalWidth/2,y:img.naturalHeight/2,size:Math.min(img.naturalWidth,img.naturalHeight)*0.34,shape:'circle'};
   ed.title=title;
   const cv=$('edCanvas'), dispW=Math.min(360, window.innerWidth-72);
   ed.scale=dispW/ed.poster.w; cv.width=Math.round(ed.poster.w*ed.scale); cv.height=Math.round(ed.poster.h*ed.scale);
-  $('edZoom').value=34; $('edFile').value=''; edShape('circle'); edRender();
+  $('edZoom').value=34; $('edFile').value=''; edShape('circle'); edWire(cv); edRender();
   $('editor').classList.add('open');
+}
+function edWire(cv){
+  if(ed._wired) return; ed._wired=true;
+  cv.addEventListener('mousedown',edStart); cv.addEventListener('touchstart',edStart,{passive:false});
+  document.addEventListener('mousemove',edMove); document.addEventListener('touchmove',edMove,{passive:false});
+  document.addEventListener('mouseup',edEnd); document.addEventListener('touchend',edEnd);
 }
 function edRender(){ const cv=$('edCanvas'), ctx=cv.getContext('2d'); ctx.clearRect(0,0,cv.width,cv.height); ctx.drawImage(ed.poster.img,0,0,cv.width,cv.height); if(ed.photo.img) paintPhoto(ctx,ed.photo,ed.scale,0); }
 function edPhoto(inp){ const f=inp.files&&inp.files[0]; if(!f) return; const im=new Image(); im.onload=()=>{ ed.photo.img=im; edRender(); }; im.src=URL.createObjectURL(f); }
 function edPoint(e){ const cv=$('edCanvas'), r=cv.getBoundingClientRect(), pt=e.touches?e.touches[0]:e; return {x:(pt.clientX-r.left)/ed.scale, y:(pt.clientY-r.top)/ed.scale}; }
-function edStart(e){ if(!$('editor').classList.contains('open')||!ed.photo.img) return; ed._drag=true; const p=edPoint(e); ed.photo.x=p.x; ed.photo.y=p.y; edRender(); e.preventDefault&&e.preventDefault(); }
-function edMove(e){ if(!ed._drag||!ed.photo.img) return; const p=edPoint(e); ed.photo.x=p.x; ed.photo.y=p.y; edRender(); e.preventDefault&&e.preventDefault(); }
+function edStart(e){ if(!$('editor').classList.contains('open')||!ed.photo.img) return; ed._drag=true; const p=edPoint(e); ed.photo.x=p.x; ed.photo.y=p.y; edRender(); if(e.preventDefault) e.preventDefault(); }
+function edMove(e){ if(!ed._drag||!ed.photo.img) return; const p=edPoint(e); ed.photo.x=p.x; ed.photo.y=p.y; edRender(); if(e.preventDefault) e.preventDefault(); }
 function edEnd(){ ed._drag=false; }
 function edZoom(v){ if(!ed.photo.img) return; ed.photo.size=Math.min(ed.poster.w,ed.poster.h)*(v/100); edRender(); }
 function edShape(sh){ ed.photo.shape=sh; document.querySelectorAll('.shape-btn').forEach(b=>b.classList.toggle('active',b.dataset.sh===sh)); edRender(); }
@@ -204,10 +245,10 @@ function edDownload(){
 }
 function closeEditor(){ $('editor').classList.remove('open'); }
 
-/* ---------- share + lightbox ---------- */
+/* ===================== SHARE + LIGHTBOX ===================== */
 function absUrl(src){ const base=CFG.SITE_URL||(location.origin+location.pathname.replace(/[^/]*$/,'')); return base+src; }
 function shareTo(net,src){
-  const url=absUrl(src), text=(DATA.site&&DATA.site.shareText)||'PosterHub Pro'; let u='';
+  const url=absUrl(src), text=(DATA&&DATA.site&&DATA.site.shareText)||'PosterHub Pro'; let u='';
   if(net==='wa') u='https://wa.me/?text='+encodeURIComponent(text+' '+url);
   else if(net==='fb') u='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url);
   else if(net==='x') u='https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(url);
@@ -217,33 +258,63 @@ function shareTo(net,src){
 function openLb(src,title){ $('lbImg').src=src; $('lbCap').textContent=title||''; $('lb').classList.add('open'); }
 function closeLb(){ $('lb').classList.remove('open'); }
 
-/* ---------- auth ---------- */
+/* ===================== AUTH (pages) ===================== */
 function updateAuthUI(){
   const b=$('planBadge'), a=$('authBtn');
-  if(SESSION){ a.textContent='Logout'; a.onclick=doLogout; b.classList.remove('hidden');
-    if(isActive()){ b.textContent='👑 '+planLabel(); b.className='badge active'; } else { b.textContent='Free'; b.className='badge'; }
-  } else { a.textContent='Login'; a.onclick=openAuth; b.classList.add('hidden'); }
+  if(b&&a){
+    if(loggedIn()){ a.textContent='Logout'; a.onclick=doLogout; b.classList.remove('hidden');
+      if(isActive()){ b.textContent='👑 '+planLabel(); b.className='badge active'; } else { b.textContent='Free'; b.className='badge'; }
+    } else { a.textContent='Login'; a.onclick=()=>navTo('#/login'); b.classList.add('hidden'); }
+  }
+  // landing nav
+  const nav=$('navAuth');
+  if(nav){
+    if(loggedIn()){ nav.innerHTML='<button class="nav-link" onclick="navTo(\'#/app\')">🖼️ Gallery</button><button class="nav-cta" onclick="doLogout()">Logout</button>'; }
+    else{ nav.innerHTML='<button class="nav-link" onclick="navTo(\'#/login\')">Login</button><button class="nav-cta" onclick="navTo(\'#/signup\')">शुरू करें</button>'; }
+  }
+  const hi=$('helloUser'); if(hi){ hi.textContent = loggedIn()? ('👋 '+(SESSION.name||'')) : ''; }
 }
-function openAuth(){ $('auth').classList.add('open'); authTab('login'); }
-function closeAuth(){ $('auth').classList.remove('open'); }
-function authTab(t){ $('tabLogin').classList.toggle('active',t==='login'); $('tabSignup').classList.toggle('active',t==='signup'); $('formLogin').style.display=t==='login'?'block':'none'; $('formSignup').style.display=t==='signup'?'block':'none'; }
+function openAuth(){ navTo('#/login'); }
 async function doSignup(){
-  const name=$('suName').value.trim(), email=$('suEmail').value.trim().toLowerCase(), pw=$('suPw').value;
-  if(!name||!email||pw.length<4){ toast('सभी field भरें (password ≥ 4)',false); return; }
-  try{ const j=await api('signup',{name,email,password:pw}); saveSession({email,token:j.token,name,plan:j.plan,expiry:j.expiry,status:j.status}); closeAuth(); render(); toast('Account बन गया ✓',true); openPlans(); }
-  catch(e){ toast(e.message,false); }
+  const name=($('suName').value||'').trim();
+  const wa=($('suWa').value||'').replace(/[^0-9]/g,'');
+  const email=($('suEmail').value||'').trim().toLowerCase();
+  const pw=$('suPw').value||'';
+  if(!name){ toast('अपना नाम डालें',false); return; }
+  if(wa.length<10){ toast('सही WhatsApp number डालें (10 अंक)',false); return; }
+  if(!email||email.indexOf('@')<0){ toast('सही email डालें',false); return; }
+  if(pw.length<4){ toast('Password कम से कम 4 अक्षर',false); return; }
+  const btn=$('suBtn'); if(btn){ btn.disabled=true; btn.textContent='एक पल...'; }
+  try{
+    const j=await api('signup',{name,email,password:pw,whatsapp:wa});
+    saveSession({email,token:j.token,name,whatsapp:wa,plan:j.plan,expiry:j.expiry,status:j.status});
+    toast('Account बन गया ✓',true); navTo('#/pricing');
+  }catch(e){ toast(e.message,false); }
+  finally{ if(btn){ btn.disabled=false; btn.textContent='✨ Account बनाएँ'; } }
 }
 async function doLogin(){
-  const email=$('liEmail').value.trim().toLowerCase(), pw=$('liPw').value;
+  const email=($('liEmail').value||'').trim().toLowerCase(), pw=$('liPw').value||'';
   if(!email||!pw){ toast('email और password डालें',false); return; }
-  try{ const j=await api('login',{email,password:pw}); saveSession({email,token:j.token,name:j.name,plan:j.plan,expiry:j.expiry,status:j.status}); closeAuth(); render(); toast('Login हो गया ✓',true); }
-  catch(e){ toast(e.message,false); }
+  const btn=$('liBtn'); if(btn){ btn.disabled=true; btn.textContent='एक पल...'; }
+  try{
+    const j=await api('login',{email,password:pw});
+    saveSession({email,token:j.token,name:j.name,whatsapp:j.whatsapp,plan:j.plan,expiry:j.expiry,status:j.status});
+    toast('Login हो गया ✓',true); navTo('#/app');
+  }catch(e){ toast(e.message,false); }
+  finally{ if(btn){ btn.disabled=false; btn.textContent='Login'; } }
 }
-function doLogout(){ clearSession(); render(); toast('Logout हो गए',true); }
+function doLogout(){ clearSession(); if(_dataLoaded) render(); toast('Logout हो गए',true); navTo('#/home'); }
 
-/* ---------- plans + pay ---------- */
-function openPlans(){ if(!SESSION){ openAuth(); return; } $('plans').classList.add('open'); }
-function choosePlan(id){ closeModal('plans'); openPay(id); }
+/* ===================== PRICING + PAY ===================== */
+function renderPricing(){
+  const badge=$('curPlanNote'); if(!badge) return;
+  if(loggedIn() && isActive()) badge.textContent='आपका मौजूदा plan: '+planLabel()+(SESSION.expiry?(' (तक '+SESSION.expiry+')'):'');
+  else badge.textContent='';
+}
+function choosePlan(id){
+  if(!loggedIn()){ toast('पहले account बनाएँ',true); navTo('#/signup'); return; }
+  openPay(id);
+}
 function openPay(id){
   payPlan=CFG.PLANS[id]; if(!payPlan) return;
   const note='PosterHubPro-'+payPlan.id+'-'+(SESSION?SESSION.email:'');
@@ -261,6 +332,32 @@ async function submitPayment(){
   }catch(e){ toast(e.message,false); }
 }
 function closeModal(id){ const m=$(id); if(m) m.classList.remove('open'); }
+function closeAllModals(){ ['pay','editor','lb'].forEach(id=>{ const m=$(id); if(m) m.classList.remove('open'); }); }
 
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ ['auth','plans','pay','editor','lb'].forEach(id=>{ const m=$(id); if(m) m.classList.remove('open'); }); } });
+/* ===================== LANDING animations ===================== */
+function initLanding(){
+  if(_landingInit) return; _landingInit=true;
+  // reveal on scroll
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver((es)=>{ es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }); },{threshold:0.14});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    // count up
+    const cio=new IntersectionObserver((es)=>{ es.forEach(en=>{ if(en.isIntersecting){ countUp(en.target); cio.unobserve(en.target); } }); },{threshold:0.5});
+    document.querySelectorAll('.statnum').forEach(el=>cio.observe(el));
+  } else { document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in')); }
+  ensureData(); // so showcase fills when ready
+}
+function countUp(el){
+  const target=parseInt(el.dataset.to||'0',10), suf=el.dataset.suf||''; let n=0; const step=Math.max(1,Math.round(target/40));
+  const t=setInterval(()=>{ n+=step; if(n>=target){ n=target; clearInterval(t); } el.textContent=n.toLocaleString('en-IN')+suf; },28);
+}
+function buildShowcase(){
+  const row=$('showcase'); if(!row||!DATA) return;
+  let pics=allItems(); if(!pics.length) return;
+  pics=pics.concat(pics); // loop
+  row.innerHTML=pics.slice(0,18).map(p=>`<div class="sc-card"><img loading="lazy" src="${absSrc(p)}" alt=""></div>`).join('');
+}
+
+/* ===================== global ===================== */
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeAllModals(); } });
 window.addEventListener('DOMContentLoaded', init);

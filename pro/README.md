@@ -29,7 +29,9 @@ posterhub-pro/
 ## शुरू कैसे करें
 
 1. `backend/SETUP.md` पढ़कर Google Apps Script deploy करें → Web App URL लें।
-2. `config.js` में `API_URL` में वह URL paste करें। (UPI ID `6387617678-2@okbizaxis` पहले से सेट है।)
+2. **`config.js` में `API_URL` पहले से आपके deploy किए गए URL पर सेट है** (UPI ID `6387617678-2@okbizaxis` भी सेट है)। अगर आप दोबारा deploy करके नया URL बनाएँ, तो वही नया URL `config.js` के `API_URL` में डाल दें।
+
+> **नोट:** Signup में अब **WhatsApp number ज़रूरी** है और login **localStorage में हमेशा के लिए save** रहता है (दोबारा login नहीं करना पड़ता)।
 3. पूरा `posterhub-pro/` folder किसी भी static host (Netlify / Vercel / अपना hosting) पर डाल दें।
 4. `config.js` में `SITE_URL` में अपना domain डालें (share links सही बनेंगे)।
 

@@ -4,92 +4,209 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>PosterHub Pro — Premium Posters</title>
+<title>PosterHub Pro — Premium पोस्टर, आपके नाम के साथ</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header class="hdr">
-  <div class="brand"><span class="logo">✦</span> PosterHub <b>Pro</b></div>
-  <div class="hdr-right">
-    <span id="planBadge" class="badge hidden"></span>
-    <button id="goProBtn" class="btn-ghost" onclick="openPlans()">⭐ Plans</button>
-    <button id="authBtn" class="btn-ghost" onclick="openAuth()">Login</button>
-  </div>
-</header>
 
-<div class="searchbar">
-  <input id="search" type="text" placeholder="🔍 Search posters..." oninput="onSearch()">
-  <span class="count" id="count">0 posters</span>
+<!-- ===================== LANDING ===================== -->
+<div id="view-landing" class="view show">
+  <nav class="lnav">
+    <div class="brand"><span class="logo">✦</span> PosterHub <b>Pro</b></div>
+    <div class="nav-right" id="navAuth"></div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+    <div class="hero-in">
+      <div class="hero-text">
+        <span class="pill">🔥 रोज़ नए Premium पोस्टर</span>
+        <h1>अपने <span class="grad">नाम और फ़ोटो</span> के साथ<br>शानदार पोस्टर बनाएँ</h1>
+        <p>हर दिन Good Morning, त्यौहार, दिन-विशेष और exclusive premium पोस्टर। No ads, HD download, और अपनी फ़ोटो personalize — सब एक जगह।</p>
+        <div class="hero-cta">
+          <button class="btn-xl" onclick="navTo('#/signup')">🚀 अभी शुरू करें</button>
+          <button class="btn-xl ghost" onclick="navTo('#/pricing')">₹30 से — Plans देखें</button>
+        </div>
+        <div class="hero-trust">⭐⭐⭐⭐⭐ हड़ारों खुश users · ₹1/दिन से भी कम में</div>
+      </div>
+      <div class="hero-art">
+        <div class="float-card fc1">🌅<span>Good Morning</span></div>
+        <div class="float-card fc2">👑<span>Premium</span></div>
+        <div class="float-card fc3">🎨<span>Your Photo</span></div>
+        <div class="phone">
+          <div class="phone-top">PosterHub Pro</div>
+          <div class="phone-grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="wave"></div>
+  </header>
+
+  <section class="stats reveal">
+    <div class="stat"><div class="statnum" data-to="500" data-suf="+">0</div><span>Premium Posters</span></div>
+    <div class="stat"><div class="statnum" data-to="50" data-suf="+">0</div><span>रोज़ नए Daily</span></div>
+    <div class="stat"><div class="statnum" data-to="100" data-suf="%">0</div><span>Ad-free + HD</span></div>
+  </section>
+
+  <section class="feat">
+    <h2 class="reveal">क्यों PosterHub <span class="grad">Pro?</span></h2>
+    <div class="feat-grid">
+      <div class="fcard reveal"><div class="fi">🚫</div><h3>कोई ads नहीं</h3><p>बिना किसी रुकावट के सीधा download।</p></div>
+      <div class="fcard reveal"><div class="fi">⚡</div><h3>तुरंत HD download</h3><p>10 सेकंड रुकना नहीं — एक click में HD/4K।</p></div>
+      <div class="fcard reveal"><div class="fi">🎨</div><h3>अपनी फ़ोटो + नाम</h3><p>फ़ोटो खिसकाएँ, circle/square, नीचे अपना नाम।</p></div>
+      <div class="fcard reveal"><div class="fi">👑</div><h3>Exclusive packs</h3><p>सिर्फ members के लिए premium पोस्टर।</p></div>
+      <div class="fcard reveal"><div class="fi">📅</div><h3>रोज़ नया content</h3><p>हर दिन, हर त्यौहार और दिन-विशेष पोस्टर।</p></div>
+      <div class="fcard reveal"><div class="fi">📲</div><h3>आसान share</h3><p>WhatsApp, Instagram, Facebook — एक tap।</p></div>
+    </div>
+  </section>
+
+  <section class="showcase-wrap reveal">
+    <h2>एक झलक — हमारे <span class="grad">posters</span></h2>
+    <div class="showcase" id="showcase"></div>
+  </section>
+
+  <section class="how reveal">
+    <h2>कैसे काम करता है</h2>
+    <div class="steps3">
+      <div class="step"><span>1</span><h3>Account बनाएँ</h3><p>नाम, WhatsApp और email से 30 सेकंड में।</p></div>
+      <div class="step"><span>2</span><h3>Plan लें</h3><p>UPI से ₹30 या ₹49 में pay करें।</p></div>
+      <div class="step"><span>3</span><h3>Download करें</h3><p>अनगिनत HD posters — अपने नाम के साथ।</p></div>
+    </div>
+  </section>
+
+  <section class="price-prev reveal">
+    <h2>सीधे-सादे <span class="grad">plans</span></h2>
+    <div class="pp-cards">
+      <div class="pp">
+        <div class="pp-name">💎 Poster Plus</div>
+        <div class="pp-price">₹30<span>/month</span></div>
+        <ul><li>कोई ads नहीं</li><li>तुरंत HD download</li><li>सभी Daily posters</li><li>ऊपर साफ़ brand पट्टी</li></ul>
+        <button class="btn-main" onclick="navTo('#/signup')">चुनें</button>
+      </div>
+      <div class="pp best">
+        <div class="pp-tag">⭐ सबसे लोकप्रिय</div>
+        <div class="pp-name">👑 Advance Plus</div>
+        <div class="pp-price">₹49<span>/month</span></div>
+        <ul><li>Poster Plus की सभी चीज़ें</li><li>Exclusive premium packs</li><li>फ़ोटो + नाम personalize 🎨</li><li>नए posters पहले (early access)</li><li>Full HD / 4K</li></ul>
+        <button class="btn-main" onclick="navTo('#/signup')">चुनें</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner reveal">
+    <h2>आज ही शुरू करें — ₹1/दिन से भी कम में</h2>
+    <button class="btn-xl" onclick="navTo('#/signup')">🚀 Account बनाएँ</button>
+  </section>
+
+  <footer class="lfoot">
+    PosterHub Pro · Premium (Advance) version<br>
+    ₹30 Poster Plus · ₹49 Advance Plus · सभी posters @JitendraUno
+  </footer>
 </div>
 
-<div class="daily" id="daily"></div>
-<div class="catbar" id="cats"></div>
-<div class="subbar" id="subbar" style="display:none"></div>
-
-<main id="content"></main>
-<div class="pager" id="pager"></div>
-
-<footer>
-  PosterHub Pro · Premium (Advance) version<br>
-  ₹30 Poster Plus · ₹49 Advance Plus · सभी posters @JitendraUno
-</footer>
-
-<!-- AUTH MODAL -->
-<div class="modal" id="auth">
-  <div class="mbox">
-    <button class="mclose" onclick="closeAuth()">×</button>
-    <h3>PosterHub Pro में आपका स्वागत</h3>
-    <p class="sub-t">Login या नया account बनाएँ</p>
-    <div class="tabs">
-      <button id="tabLogin" class="active" onclick="authTab('login')">Login</button>
-      <button id="tabSignup" onclick="authTab('signup')">Sign up</button>
+<!-- ===================== PRICING ===================== -->
+<div id="view-pricing" class="view">
+  <nav class="lnav">
+    <div class="brand" onclick="navTo('#/home')" style="cursor:pointer"><span class="logo">✦</span> PosterHub <b>Pro</b></div>
+    <div class="nav-right"><button class="nav-link" onclick="navTo('#/home')">← Home</button></div>
+  </nav>
+  <div class="page-pad">
+    <h1 class="ph1">अपना <span class="grad">plan</span> चुनें</h1>
+    <p class="psub" id="curPlanNote"></p>
+    <p class="psub">कभी भी cancel कर सकते हैं · UPI से सुरक्षित payment</p>
+    <div class="plan-cards">
+      <div class="plan-card">
+        <div class="pc-head"><span class="pc-name">💎 Poster Plus</span><span class="pc-price">₹30<small>/month</small></span></div>
+        <ul class="pc-feat">
+          <li>✅ कोई ads नहीं</li>
+          <li>✅ तुरंत download (बिना रुके)</li>
+          <li>✅ HD quality</li>
+          <li>✅ सभी Daily posters</li>
+          <li>✅ ऊपर साफ़ brand पट्टी</li>
+          <li class="no">✖ Exclusive premium packs</li>
+          <li class="no">✖ फ़ोटो personalize</li>
+        </ul>
+        <button class="btn-main" onclick="choosePlan('plus')">₹30 में लें</button>
+      </div>
+      <div class="plan-card best">
+        <div class="pc-tag">⭐ सबसे लोकप्रिय</div>
+        <div class="pc-head"><span class="pc-name">👑 Advance Plus</span><span class="pc-price">₹49<small>/month</small></span></div>
+        <ul class="pc-feat">
+          <li>✅ Poster Plus की सभी चीज़ें</li>
+          <li>✅ Exclusive premium poster packs</li>
+          <li>✅ नए posters पहले (early access)</li>
+          <li>✅ फ़ोटो + नाम personalize 🎨</li>
+          <li>✅ Full HD / 4K</li>
+        </ul>
+        <button class="btn-main" onclick="choosePlan('advance')">₹49 में लें</button>
+      </div>
     </div>
-    <div id="formLogin">
+  </div>
+</div>
+
+<!-- ===================== LOGIN ===================== -->
+<div id="view-login" class="view">
+  <div class="auth-wrap">
+    <div class="auth-bg"></div>
+    <div class="auth-card">
+      <div class="brand center" onclick="navTo('#/home')" style="cursor:pointer"><span class="logo">✦</span> PosterHub <b>Pro</b></div>
+      <h2>वापसी पर स्वागत 👋</h2>
+      <p class="sub-t">Login करके अपने posters पाएं</p>
       <div class="field"><label>Email</label><input id="liEmail" type="email" placeholder="you@email.com"></div>
       <div class="field"><label>Password</label><input id="liPw" type="password" placeholder="••••••"></div>
-      <button class="btn-main" onclick="doLogin()">Login</button>
+      <button id="liBtn" class="btn-main" onclick="doLogin()">Login</button>
+      <p class="auth-alt">नए हैं? <a onclick="navTo('#/signup')">Account बनाएँ</a></p>
     </div>
-    <div id="formSignup" style="display:none">
+  </div>
+</div>
+
+<!-- ===================== SIGNUP ===================== -->
+<div id="view-signup" class="view">
+  <div class="auth-wrap">
+    <div class="auth-bg"></div>
+    <div class="auth-card">
+      <div class="brand center" onclick="navTo('#/home')" style="cursor:pointer"><span class="logo">✦</span> PosterHub <b>Pro</b></div>
+      <h2>नया account बनाएँ ✨</h2>
+      <p class="sub-t">सिर्फ़ 30 सेकंड — फिर हज़ारों premium posters</p>
       <div class="field"><label>आपका नाम (profile name)</label><input id="suName" type="text" placeholder="Atul Pal"></div>
+      <div class="field"><label>WhatsApp number</label><input id="suWa" type="tel" inputmode="numeric" placeholder="जैसे 9876543210"></div>
       <div class="field"><label>Email</label><input id="suEmail" type="email" placeholder="you@email.com"></div>
       <div class="field"><label>Password</label><input id="suPw" type="password" placeholder="••••••"></div>
-      <button class="btn-main" onclick="doSignup()">Create account</button>
+      <button id="suBtn" class="btn-main" onclick="doSignup()">✨ Account बनाएँ</button>
+      <p class="auth-alt">पहले से account है? <a onclick="navTo('#/login')">Login करें</a></p>
     </div>
   </div>
 </div>
 
-<!-- PLANS MODAL -->
-<div class="modal" id="plans">
-  <div class="mbox">
-    <button class="mclose" onclick="closeModal('plans')">×</button>
-    <h3>अपना plan चुनें</h3>
-    <p class="sub-t">Premium posters, no ads, HD download और और भी</p>
-    <div class="plan" onclick="choosePlan('plus')">
-      <div class="pname">💎 Poster Plus</div>
-      <div class="price">₹30 <span>/month</span></div>
-      <ul>
-        <li>✅ कोई ads नहीं</li>
-        <li>✅ तुरंत download (बिना रुके)</li>
-        <li>✅ HD quality</li>
-        <li>✅ सभी Daily posters</li>
-        <li>✅ ऊपर साफ़ brand पट्टी (image साफ़)</li>
-      </ul>
+<!-- ===================== APP / GALLERY ===================== -->
+<div id="view-app" class="view">
+  <header class="hdr">
+    <div class="brand" onclick="navTo('#/home')" style="cursor:pointer"><span class="logo">✦</span> PosterHub <b>Pro</b></div>
+    <div class="hdr-right">
+      <span id="helloUser" class="hello"></span>
+      <span id="planBadge" class="badge hidden"></span>
+      <button class="btn-ghost" onclick="navTo('#/pricing')">⭐ Plans</button>
+      <button id="authBtn" class="btn-ghost" onclick="navTo('#/login')">Login</button>
     </div>
-    <div class="plan adv" onclick="choosePlan('advance')">
-      <div class="pname">👑 Advance Plus</div>
-      <div class="price">₹49 <span>/month</span></div>
-      <ul>
-        <li>✅ Poster Plus की सभी चीज़ें</li>
-        <li>✅ Exclusive premium poster packs</li>
-        <li>✅ नए posters पहले (early access)</li>
-        <li>✅ फ़ोटो + नाम personalize 🎨</li>
-        <li>✅ Full HD / 4K</li>
-      </ul>
-    </div>
+  </header>
+
+  <div class="searchbar">
+    <input id="search" type="text" placeholder="🔍 Search posters..." oninput="onSearch()">
+    <span class="count" id="count">0 posters</span>
   </div>
+
+  <div class="daily" id="daily"></div>
+  <div class="catbar" id="cats"></div>
+  <div class="subbar" id="subbar" style="display:none"></div>
+
+  <main id="content"></main>
+  <div class="pager" id="pager"></div>
+
+  <footer class="lfoot">PosterHub Pro · सभी posters @JitendraUno</footer>
 </div>
 
-<!-- PAY MODAL -->
+<!-- ===================== PAY MODAL ===================== -->
 <div class="modal" id="pay">
   <div class="mbox">
     <button class="mclose" onclick="closeModal('pay')">×</button>
@@ -108,7 +225,7 @@
   </div>
 </div>
 
-<!-- EDITOR MODAL -->
+<!-- ===================== EDITOR MODAL ===================== -->
 <div class="modal" id="editor">
   <div class="mbox">
     <button class="mclose" onclick="closeEditor()">×</button>
@@ -128,7 +245,7 @@
   </div>
 </div>
 
-<!-- LIGHTBOX -->
+<!-- ===================== LIGHTBOX ===================== -->
 <div class="lb" id="lb">
   <button class="x" onclick="closeLb()">×</button>
   <img id="lbImg" src="" alt="">

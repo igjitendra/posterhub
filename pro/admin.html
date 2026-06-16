@@ -7,15 +7,16 @@
 <title>PosterHub Pro — Admin</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-  .wrap{max-width:760px;margin:24px auto;padding:0 16px}
+  .wrap{max-width:780px;margin:24px auto;padding:0 16px}
   .row{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:12px}
   .row b{font-size:15px}
-  .row .meta{color:var(--soft);font-size:13px;margin:6px 0 10px;line-height:1.7}
-  .row .acts{display:flex;gap:10px}
+  .row .meta{color:var(--soft);font-size:13px;margin:6px 0 10px;line-height:1.8}
+  .row .acts{display:flex;gap:10px;flex-wrap:wrap}
   .ok-btn{background:#1f7a44;color:#fff;font-weight:700;padding:10px 18px;border-radius:10px}
   .no-btn{background:#a3263a;color:#fff;font-weight:700;padding:10px 18px;border-radius:10px}
-  .keybar{display:flex;gap:10px;margin-bottom:18px}
-  .keybar input{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:12px;color:#fff}
+  .wa-btn{background:#1f8f4e;color:#fff;font-weight:700;padding:10px 18px;border-radius:10px;text-decoration:none;display:inline-block}
+  .keybar{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+  .keybar input{flex:1;min-width:200px;background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:12px;color:#fff}
 </style>
 </head>
 <body>
@@ -38,13 +39,15 @@ async function api(action,data){
   const j=JSON.parse(await r.text()); if(!j.ok) throw new Error(j.error||'error'); return j;
 }
 function key(){return $('adminKey').value.trim();}
+function waLink(n){ n=String(n||'').replace(/[^0-9]/g,''); if(n.length===10) n='91'+n; return 'https://wa.me/'+n; }
 async function loadPending(){
   try{ const j=await api('listPending',{key:key()});
     if(!j.rows.length){ $('list').innerHTML='<p style="color:var(--soft);text-align:center;margin-top:30px">✅ कोई pending payment नहीं</p>'; return; }
     $('list').innerHTML=j.rows.map(r=>`<div class="row"><b>${r.email}</b>
-      <div class="meta">Plan: <b>${r.plan}</b> · ₹${r.amount} · Txn: <b>${r.txn}</b><br>${new Date(r.time).toLocaleString()}</div>
+      <div class="meta">Plan: <b>${r.plan}</b> · ₹${r.amount} · Txn: <b>${r.txn}</b><br>📱 WhatsApp: <b>${r.whatsapp||'—'}</b><br>${new Date(r.time).toLocaleString()}</div>
       <div class="acts"><button class="ok-btn" onclick="approve(${r.row})">✓ Approve</button>
-      <button class="no-btn" onclick="reject(${r.row})">✕ Reject</button></div></div>`).join('');
+      <button class="no-btn" onclick="reject(${r.row})">✕ Reject</button>
+      ${r.whatsapp?`<a class="wa-btn" href="${waLink(r.whatsapp)}" target="_blank">🟢 WhatsApp</a>`:''}</div></div>`).join('');
   }catch(e){ toast(e.message,false); }
 }
 async function approve(row){ try{ await api('approvePayment',{key:key(),row}); toast('Approved — plan active ✓',true); loadPending(); }catch(e){ toast(e.message,false); } }
