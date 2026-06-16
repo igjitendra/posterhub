@@ -6,6 +6,8 @@ let SESSION = loadSession();
 let payPlan = null;
 let _dataLoaded = false, _landingInit = false;
 const IC = { wa:'🟢', fb:'f', ig:'◎', x:'𝕏' };
+const PH_IMG = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500"><rect width="100%" height="100%" fill="#1b1c25"/><text x="50%" y="46%" fill="#5a5f6b" font-family="Arial" font-size="26" text-anchor="middle">PosterHub Pro</text><text x="50%" y="56%" fill="#3e424d" font-family="Arial" font-size="16" text-anchor="middle">image यहाँ आएगी</text></svg>');
+function imgFallback(el){ el.onerror=null; el.src=PH_IMG; }
 
 const $ = id => document.getElementById(id);
 function toast(msg, ok){ const t=$('toast'); if(!t) return; t.textContent=msg; t.className='toast show '+(ok?'ok':'err'); clearTimeout(t._t); t._t=setTimeout(()=>{t.className='toast';},3600); }
@@ -60,12 +62,13 @@ async function init(){
 async function ensureData(){
   if(_dataLoaded) return;
   try{
-    DATA = await (await fetch('posters.json')).json();
+    if(window.POSTERS){ DATA = window.POSTERS; }                 // posters.js (no fetch needed — file:// + हर host पर चलता है)
+    else { DATA = await (await fetch('posters.json')).json(); }   // fallback
     _dataLoaded = true;
     buildCats(); go('all');
     buildShowcase();
   }catch(e){
-    const c=$('content'); if(c) c.innerHTML='<div class="empty">posters.json load नहीं हुआ। (साइट को host/serve करके खोलें)</div>';
+    const c=$('content'); if(c) c.innerHTML='<div class="empty">Posters load नहीं हुए — posters.js file साइट के साथ upload हुई है या नहीं चेक करें।</div>';
   }
 }
 // permanent login: कभी session clear नहीं करते — सिर्फ plan info refresh करते हैं
@@ -103,8 +106,8 @@ function buildDaily(){
   const cfg=DATA.daily, row=$('daily'); if(!cfg){ row.style.display='none'; return; }
   const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const days=cfg.days||{}; let html=''; const today=new Date();
-  for(let i=0;i<10;i++){
-    const d=new Date(today); d.setDate(today.getDate()-i);
+  for(let i=0;i<7;i++){
+    const d=new Date(today); d.setDate(today.getDate()+i);
     const dd=('0'+d.getDate()).slice(-2), mm=('0'+(d.getMonth()+1)).slice(-2), key=dd+'-'+mm;
     const day=days[key], has=day&&day.posters&&day.posters.length, thumb=has?(cfg.base+'/'+key+'/'+day.posters[0].file):'';
     const lab=dd+' '+M[d.getMonth()];
@@ -152,7 +155,7 @@ function cardHTML(p,i){
   const src=absSrc(p), safe=src.replace(/'/g,"\\'"), jt=(p.title||'Poster').replace(/'/g,"\\'"), locked=!canAccess(p);
   const badge=p.exclusive?'<span class="tag excl">👑 Advance</span>':(p.personalize?'<span class="tag per">🎨 Personalize</span>':'');
   return `<div class="card" style="animation-delay:${(i*0.03).toFixed(2)}s">`
-    +`<div class="imgwrap" onclick="openLb('${safe}','${jt}')">${badge}<img loading="lazy" src="${src}" alt="${(p.title||'').replace(/"/g,'&quot;')}">${locked?'<div class="lock">🔒</div>':''}</div>`
+    +`<div class="imgwrap" onclick="openLb('${safe}','${jt}')">${badge}<img loading="lazy" src="${src}" onerror="imgFallback(this)" alt="${(p.title||'').replace(/"/g,'&quot;')}">${locked?'<div class="lock">🔒</div>':''}</div>`
     +`<div class="cbody"><h4>${p.title||'Poster'}</h4>`
     +`<button class="dl" onclick="dl('${safe}','${jt}',${p.exclusive?1:0})">⬇ Download</button>`
     +(p.personalize?`<button class="per-btn" onclick="openEditor('${safe}','${jt}')">🎨 अपनी फ़ोटो लगाएँ</button>`:'')
@@ -355,7 +358,7 @@ function buildShowcase(){
   const row=$('showcase'); if(!row||!DATA) return;
   let pics=allItems(); if(!pics.length) return;
   pics=pics.concat(pics); // loop
-  row.innerHTML=pics.slice(0,18).map(p=>`<div class="sc-card"><img loading="lazy" src="${absSrc(p)}" alt=""></div>`).join('');
+  row.innerHTML=pics.slice(0,18).map(p=>`<div class="sc-card"><img loading="lazy" src="${absSrc(p)}" onerror="imgFallback(this)" alt=""></div>`).join('');
 }
 
 /* ===================== global ===================== */
