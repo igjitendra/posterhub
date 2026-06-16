@@ -234,6 +234,7 @@
     <div class="ed-canvas-wrap"><canvas id="edCanvas"></canvas></div>
     <div class="ed-controls">
       <label class="file-btn">📷 फ़ोटो चुनें<input id="edFile" type="file" accept="image/*" onchange="edPhoto(this)"></label>
+      <a class="file-btn" href="dp.html" style="text-decoration:none;display:inline-block">✂️ Crop / फ़ोटो बदलें</a>
       <div class="ed-row"><label>Zoom</label><input id="edZoom" type="range" min="12" max="80" value="34" oninput="edZoom(this.value)"></div>
       <div class="ed-row"><label>Shape</label>
         <button class="shape-btn active" data-sh="circle" onclick="edShape('circle')">⭕ Circle</button>

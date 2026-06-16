@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>अपनी फ़ोटो सेट करें — PosterHub Pro</title>
+<style>
+  :root{--b1:#7b5cff;--b2:#b14df0;--pink:#e8418c;--bg:#0c0d12;--surface:#15161d;--soft:#9aa0ad;--border:#262833;--radius:16px}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Arial,"Noto Sans",sans-serif;background:radial-gradient(1200px 600px at 50% -10%,#1b1430,var(--bg));color:#fff;min-height:100vh;display:grid;place-items:center;padding:18px}
+  .card{width:100%;max-width:420px;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  .brand{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:800;justify-content:center;margin-bottom:4px}
+  .logo{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,var(--b1),var(--b2))}
+  .b{color:var(--b1)}
+  h2{margin:8px 0 2px;text-align:center;font-size:20px}
+  .sub{margin:0 0 16px;text-align:center;color:var(--soft);font-size:13px}
+  .stage{position:relative;width:300px;height:300px;margin:0 auto;background:#000;overflow:hidden;touch-action:none;border:2px solid var(--border)}
+  .stage.circle{border-radius:50%}
+  .stage.square{border-radius:14px}
+  .stage canvas{display:block;width:300px;height:300px;cursor:grab}
+  .stage canvas:active{cursor:grabbing}
+  .ph-hint{position:absolute;inset:0;display:grid;place-items:center;color:#666;font-size:13px;text-align:center;padding:18px;pointer-events:none}
+  .ring-mask{position:absolute;inset:0;pointer-events:none;box-shadow:0 0 0 2000px rgba(0,0,0,.04) inset;border:2px dashed rgba(255,255,255,.25)}
+  .stage.circle .ring-mask{border-radius:50%}
+  .stage.square .ring-mask{border-radius:14px}
+  .row{display:flex;align-items:center;gap:10px;margin-top:14px}
+  label.lbl{font-size:13px;color:var(--soft);min-width:54px}
+  input[type=range]{flex:1;accent-color:var(--b1)}
+  .file-btn{display:inline-block;background:linear-gradient(135deg,var(--b1),var(--b2));color:#fff;padding:11px 14px;border-radius:12px;font-weight:700;cursor:pointer;text-align:center;border:none;font-size:14px}
+  .file-btn input{display:none}
+  .shape-btn{flex:1;background:#1c1d27;border:1px solid var(--border);color:#cfd2da;padding:9px;border-radius:10px;font-weight:700;cursor:pointer;font-size:13px}
+  .shape-btn.active{background:linear-gradient(135deg,var(--b1),var(--b2));color:#fff;border-color:transparent}
+  .field{margin-top:14px}
+  .field label{display:block;font-size:13px;color:var(--soft);margin-bottom:5px}
+  .field input[type=text]{width:100%;background:#10111a;border:1px solid var(--border);color:#fff;padding:12px;border-radius:12px;font-size:15px}
+  .btn-main{width:100%;margin-top:16px;background:linear-gradient(135deg,var(--b1),var(--b2));color:#fff;border:none;padding:14px;border-radius:13px;font-weight:800;font-size:15px;cursor:pointer}
+  .btn-main:disabled{opacity:.5;cursor:default}
+  .alt{display:block;text-align:center;margin-top:12px;color:var(--soft);font-size:13px;text-decoration:none}
+  .alt:hover{color:#fff}
+  .note{font-size:11.5px;color:#7e8493;text-align:center;margin-top:10px;line-height:1.5}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#fff;color:#111;padding:11px 18px;border-radius:30px;font-weight:700;font-size:14px;opacity:0;transition:.3s;pointer-events:none}
+  .toast.show{opacity:1}
+  .toast.err{background:#ff5470;color:#fff}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="brand"><span class="logo">✦</span> PosterHub <span class="b">Pro</span></div>
+    <h2>अपनी फ़ोटो सेट करें 📸</h2>
+    <p class="sub">फ़ोटो चुनें, drag करके सही करें, zoom करें — फिर save। एक बार सेट करने पर हमेशा रहेगी।</p>
+
+    <div class="stage circle" id="stage">
+      <canvas id="cv" width="300" height="300"></canvas>
+      <div class="ph-hint" id="hint">यहाँ आपकी फ़ोटो दिखेगी<br>नीचे “फ़ोटो चुनें” दबाएँ</div>
+      <div class="ring-mask"></div>
+    </div>
+
+    <div class="row">
+      <label class="file-btn">📷 फ़ोटो चुनें<input id="file" type="file" accept="image/*"></label>
+    </div>
+    <div class="row">
+      <label class="lbl">Zoom</label>
+      <input id="zoom" type="range" min="100" max="400" value="100">
+    </div>
+    <div class="row">
+      <button class="shape-btn active" id="shCircle" data-sh="circle">⭕ Circle</button>
+      <button class="shape-btn" id="shSquare" data-sh="square">⬛ Square</button>
+    </div>
+
+    <div class="field">
+      <label>आपका नाम (poster के नीचे यही दिखेगा)</label>
+      <input id="name" type="text" placeholder="जैसे Atul Pal">
+    </div>
+
+    <button class="btn-main" id="save">✓ Save करें</button>
+    <a class="alt" id="goApp" href="index.html#/app">बाद में करूँगा — गैलरी पर जाएँ →</a>
+    <p class="note">आपकी फ़ोटो सिर्फ़ इसी device में (localStorage) सुरक्षित रहती है — कहीं upload नहीं होती।</p>
+  </div>
+  <div class="toast" id="toast"></div>
+
+<script>
+  var D=300, cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+  var img=null, zoom=1, panX=0, panY=0, shape='circle', drag=false, lastX=0, lastY=0;
+  var stage=document.getElementById('stage'), hint=document.getElementById('hint');
+
+  function toast(m,ok){ var t=document.getElementById('toast'); t.textContent=m; t.className='toast show'+(ok?'':' err'); setTimeout(function(){ t.className='toast'; },2200); }
+
+  // prefill name from saved session / name
+  (function(){
+    var nm=''; try{ var s=JSON.parse(localStorage.getItem('ph_pro')||'null'); if(s&&s.name) nm=s.name; }catch(e){}
+    if(!nm){ try{ nm=localStorage.getItem('ph_pro_name')||''; }catch(e){} }
+    document.getElementById('name').value=nm;
+    // if a DP already exists, load it as starting image
+    try{ var d=localStorage.getItem('ph_pro_photo'); if(d){ var im=new Image(); im.onload=function(){ img=im; hint.style.display='none'; draw(); }; im.src=d; } }catch(e){}
+    try{ var sh=localStorage.getItem('ph_pro_dp_shape'); if(sh) setShape(sh); }catch(e){}
+  })();
+
+  function draw(){
+    ctx.clearRect(0,0,D,D);
+    if(!img) return;
+    var iw=img.naturalWidth, ih=img.naturalHeight;
+    var baseK=Math.max(D/iw, D/ih), k=baseK*zoom;
+    var w=iw*k, h=ih*k;
+    var x=(D-w)/2+panX, y=(D-h)/2+panY;
+    ctx.drawImage(img, x, y, w, h);
+  }
+
+  function clampPan(){
+    if(!img) return;
+    var iw=img.naturalWidth, ih=img.naturalHeight;
+    var baseK=Math.max(D/iw, D/ih), k=baseK*zoom;
+    var w=iw*k, h=ih*k;
+    var maxX=Math.max(0,(w-D)/2), maxY=Math.max(0,(h-D)/2);
+    if(panX>maxX) panX=maxX; if(panX<-maxX) panX=-maxX;
+    if(panY>maxY) panY=maxY; if(panY<-maxY) panY=-maxY;
+  }
+
+  document.getElementById('file').addEventListener('change', function(e){
+    var f=e.target.files&&e.target.files[0]; if(!f) return;
+    var rd=new FileReader();
+    rd.onload=function(){ var im=new Image(); im.onload=function(){ img=im; zoom=1; panX=0; panY=0; document.getElementById('zoom').value=100; hint.style.display='none'; draw(); }; im.src=rd.result; };
+    rd.readAsDataURL(f);
+  });
+
+  document.getElementById('zoom').addEventListener('input', function(e){ zoom=e.target.value/100; clampPan(); draw(); });
+
+  function setShape(sh){ shape=sh; stage.className='stage '+sh;
+    document.getElementById('shCircle').classList.toggle('active', sh==='circle');
+    document.getElementById('shSquare').classList.toggle('active', sh==='square'); }
+  document.getElementById('shCircle').onclick=function(){ setShape('circle'); };
+  document.getElementById('shSquare').onclick=function(){ setShape('square'); };
+
+  function pt(e){ var r=cv.getBoundingClientRect(), t=e.touches?e.touches[0]:e; return {x:t.clientX-r.left, y:t.clientY-r.top}; }
+  function start(e){ if(!img) return; drag=true; var p=pt(e); lastX=p.x; lastY=p.y; if(e.cancelable) e.preventDefault(); }
+  function move(e){ if(!drag||!img) return; var p=pt(e); panX+=(p.x-lastX); panY+=(p.y-lastY); lastX=p.x; lastY=p.y; clampPan(); draw(); if(e.cancelable) e.preventDefault(); }
+  function end(){ drag=false; }
+  cv.addEventListener('mousedown',start); document.addEventListener('mousemove',move); document.addEventListener('mouseup',end);
+  cv.addEventListener('touchstart',start,{passive:false}); document.addEventListener('touchmove',move,{passive:false}); document.addEventListener('touchend',end);
+
+  document.getElementById('save').addEventListener('click', function(){
+    if(!img){ toast('पहले अपनी फ़ोटो चुनें',false); return; }
+    var nm=(document.getElementById('name').value||'').trim();
+    if(!nm){ toast('अपना नाम डालें',false); return; }
+    var OUT=512, out=document.createElement('canvas'); out.width=OUT; out.height=OUT;
+    var o=out.getContext('2d'), sc=OUT/D;
+    var iw=img.naturalWidth, ih=img.naturalHeight, baseK=Math.max(D/iw, D/ih), k=baseK*zoom;
+    var w=iw*k, h=ih*k, x=(D-w)/2+panX, y=(D-h)/2+panY;
+    o.drawImage(img, x*sc, y*sc, w*sc, h*sc);
+    if(shape==='circle'){ o.globalCompositeOperation='destination-in'; o.beginPath(); o.arc(OUT/2,OUT/2,OUT/2,0,Math.PI*2); o.fill(); }
+    var data=out.toDataURL('image/png');
+    try{
+      localStorage.setItem('ph_pro_photo', data);
+      localStorage.setItem('ph_pro_dp_shape', shape);
+      localStorage.setItem('ph_pro_name', nm);
+      var s=null; try{ s=JSON.parse(localStorage.getItem('ph_pro')||'null'); }catch(e){}
+      if(s){ s.name=nm; localStorage.setItem('ph_pro', JSON.stringify(s)); }
+    }catch(e){ toast('Save नहीं हो पाया (storage)',false); return; }
+    toast('फ़ोटो save हो गई ✓ अब posters पर अपने-आप लगेगी',true);
+    setTimeout(function(){ location.href='index.html#/app'; }, 1100);
+  });
+</script>
+</body>
+</html>

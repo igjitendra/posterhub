@@ -17,6 +17,9 @@ function loadSession(){ try{ return JSON.parse(localStorage.getItem('ph_pro')||'
 function saveSession(s){ SESSION=s; try{ localStorage.setItem('ph_pro', JSON.stringify(s)); }catch(e){} updateAuthUI(); }
 function clearSession(){ SESSION=null; try{ localStorage.removeItem('ph_pro'); }catch(e){} updateAuthUI(); }
 function loggedIn(){ return !!(SESSION && SESSION.token); }
+function loadDP(){ try{ return localStorage.getItem('ph_pro_photo')||''; }catch(e){ return ''; } }
+function saveDP(d){ try{ localStorage.setItem('ph_pro_photo', d); }catch(e){} }
+function loadDPShape(){ try{ return localStorage.getItem('ph_pro_dp_shape')||'circle'; }catch(e){ return 'circle'; } }
 function isActive(){ if(!SESSION||SESSION.status!=='active'||!SESSION.expiry) return false; const e=new Date(SESSION.expiry); const t=new Date(); t.setHours(0,0,0,0); return e>=t; }
 function planRank(){ if(!isActive()) return 0; const p=CFG.PLANS[SESSION.plan]; return p?p.rank:0; }
 function planLabel(){ if(!isActive()) return null; const p=CFG.PLANS[SESSION.plan]; return p?p.name:null; }
@@ -112,8 +115,8 @@ function buildDaily(){
     const day=days[key], has=day&&day.posters&&day.posters.length, thumb=has?(cfg.base+'/'+key+'/'+day.posters[0].file):'';
     const lab=dd+' '+M[d.getMonth()];
     html+=`<div class="story ${has?'':'empty'} ${i===0?'today':''}" data-key="${key}" data-label="${lab}" onclick="openDailyDay(this)">`
-      +`<div class="ring">${has?`<img src="${thumb}" alt="">`:'📷'}${has&&day.posters.length>1?`<span class="cnt">${day.posters.length}</span>`:''}</div>`
-      +`<span class="dlab">${i===0?'आज':lab}</span></div>`;
+      +`<div class="ring">${has?`<img src="${thumb}" alt="">`:''}<span class="dt">${i===0?'आज':lab}</span>${has&&day.posters.length>1?`<span class="cnt">${day.posters.length}</span>`:''}</div>`
+      +`</div>`;
   }
   row.innerHTML=html;
 }
@@ -223,7 +226,10 @@ async function openEditor(src,title){
   ed.title=title;
   const cv=$('edCanvas'), dispW=Math.min(360, window.innerWidth-72);
   ed.scale=dispW/ed.poster.w; cv.width=Math.round(ed.poster.w*ed.scale); cv.height=Math.round(ed.poster.h*ed.scale);
-  $('edZoom').value=34; $('edFile').value=''; edShape('circle'); edWire(cv); edRender();
+  $('edZoom').value=34; $('edFile').value=''; edShape(loadDPShape()); edWire(cv);
+  const _dp=loadDP();
+  if(_dp){ const im=new Image(); im.onload=()=>{ ed.photo.img=im; edRender(); }; im.src=_dp; }
+  edRender();
   $('editor').classList.add('open');
 }
 function edWire(cv){
@@ -233,7 +239,7 @@ function edWire(cv){
   document.addEventListener('mouseup',edEnd); document.addEventListener('touchend',edEnd);
 }
 function edRender(){ const cv=$('edCanvas'), ctx=cv.getContext('2d'); ctx.clearRect(0,0,cv.width,cv.height); ctx.drawImage(ed.poster.img,0,0,cv.width,cv.height); if(ed.photo.img) paintPhoto(ctx,ed.photo,ed.scale,0); }
-function edPhoto(inp){ const f=inp.files&&inp.files[0]; if(!f) return; const im=new Image(); im.onload=()=>{ ed.photo.img=im; edRender(); }; im.src=URL.createObjectURL(f); }
+function edPhoto(inp){ const f=inp.files&&inp.files[0]; if(!f) return; const rd=new FileReader(); rd.onload=()=>{ const im=new Image(); im.onload=()=>{ ed.photo.img=im; saveDP(rd.result); edRender(); toast('फ़ोटो save हो गई ✓',true); }; im.src=rd.result; }; rd.readAsDataURL(f); }
 function edPoint(e){ const cv=$('edCanvas'), r=cv.getBoundingClientRect(), pt=e.touches?e.touches[0]:e; return {x:(pt.clientX-r.left)/ed.scale, y:(pt.clientY-r.top)/ed.scale}; }
 function edStart(e){ if(!$('editor').classList.contains('open')||!ed.photo.img) return; ed._drag=true; const p=edPoint(e); ed.photo.x=p.x; ed.photo.y=p.y; edRender(); if(e.preventDefault) e.preventDefault(); }
 function edMove(e){ if(!ed._drag||!ed.photo.img) return; const p=edPoint(e); ed.photo.x=p.x; ed.photo.y=p.y; edRender(); if(e.preventDefault) e.preventDefault(); }
@@ -302,7 +308,7 @@ async function doLogin(){
   try{
     const j=await api('login',{email,password:pw});
     saveSession({email,token:j.token,name:j.name,whatsapp:j.whatsapp,plan:j.plan,expiry:j.expiry,status:j.status});
-    toast('Login हो गया ✓',true); navTo('#/app');
+    toast('Login हो गया ✓',true); if(!loadDP()){ location.href='dp.html'; } else { navTo('#/app'); }
   }catch(e){ toast(e.message,false); }
   finally{ if(btn){ btn.disabled=false; btn.textContent='Login'; } }
 }
