@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>PosterHub Pro — Admin</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .wrap{max-width:760px;margin:24px auto;padding:0 16px}
+  .row{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:12px}
+  .row b{font-size:15px}
+  .row .meta{color:var(--soft);font-size:13px;margin:6px 0 10px;line-height:1.7}
+  .row .acts{display:flex;gap:10px}
+  .ok-btn{background:#1f7a44;color:#fff;font-weight:700;padding:10px 18px;border-radius:10px}
+  .no-btn{background:#a3263a;color:#fff;font-weight:700;padding:10px 18px;border-radius:10px}
+  .keybar{display:flex;gap:10px;margin-bottom:18px}
+  .keybar input{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:12px;color:#fff}
+</style>
+</head>
+<body>
+<header class="hdr"><div class="brand"><span class="logo">✦</span> PosterHub <b>Admin</b></div></header>
+<div class="wrap">
+  <div class="keybar">
+    <input id="adminKey" type="password" placeholder="Admin key">
+    <button class="btn-main" style="width:auto;margin:0;padding:12px 22px" onclick="loadPending()">Load pending</button>
+  </div>
+  <div id="list"></div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="config.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+function toast(m,ok){const t=$('toast');t.textContent=m;t.className='toast show '+(ok?'ok':'err');setTimeout(()=>t.className='toast',3200);}
+async function api(action,data){
+  if(!CONFIG.API_URL||CONFIG.API_URL.indexOf('PASTE')===0){toast('config.js में API_URL डालें',false);throw new Error('no url');}
+  const r=await fetch(CONFIG.API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(Object.assign({action},data||{}))});
+  const j=JSON.parse(await r.text()); if(!j.ok) throw new Error(j.error||'error'); return j;
+}
+function key(){return $('adminKey').value.trim();}
+async function loadPending(){
+  try{ const j=await api('listPending',{key:key()});
+    if(!j.rows.length){ $('list').innerHTML='<p style="color:var(--soft);text-align:center;margin-top:30px">✅ कोई pending payment नहीं</p>'; return; }
+    $('list').innerHTML=j.rows.map(r=>`<div class="row"><b>${r.email}</b>
+      <div class="meta">Plan: <b>${r.plan}</b> · ₹${r.amount} · Txn: <b>${r.txn}</b><br>${new Date(r.time).toLocaleString()}</div>
+      <div class="acts"><button class="ok-btn" onclick="approve(${r.row})">✓ Approve</button>
+      <button class="no-btn" onclick="reject(${r.row})">✕ Reject</button></div></div>`).join('');
+  }catch(e){ toast(e.message,false); }
+}
+async function approve(row){ try{ await api('approvePayment',{key:key(),row}); toast('Approved — plan active ✓',true); loadPending(); }catch(e){ toast(e.message,false); } }
+async function reject(row){ try{ await api('rejectPayment',{key:key(),row}); toast('Rejected',true); loadPending(); }catch(e){ toast(e.message,false); } }
+</script>
+</body>
+</html>

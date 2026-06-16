@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>PosterHub Pro — Premium Posters</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="hdr">
+  <div class="brand"><span class="logo">✦</span> PosterHub <b>Pro</b></div>
+  <div class="hdr-right">
+    <span id="planBadge" class="badge hidden"></span>
+    <button id="goProBtn" class="btn-ghost" onclick="openPlans()">⭐ Plans</button>
+    <button id="authBtn" class="btn-ghost" onclick="openAuth()">Login</button>
+  </div>
+</header>
+
+<div class="searchbar">
+  <input id="search" type="text" placeholder="🔍 Search posters..." oninput="onSearch()">
+  <span class="count" id="count">0 posters</span>
+</div>
+
+<div class="daily" id="daily"></div>
+<div class="catbar" id="cats"></div>
+<div class="subbar" id="subbar" style="display:none"></div>
+
+<main id="content"></main>
+<div class="pager" id="pager"></div>
+
+<footer>
+  PosterHub Pro · Premium (Advance) version<br>
+  ₹30 Poster Plus · ₹49 Advance Plus · सभी posters @JitendraUno
+</footer>
+
+<!-- AUTH MODAL -->
+<div class="modal" id="auth">
+  <div class="mbox">
+    <button class="mclose" onclick="closeAuth()">×</button>
+    <h3>PosterHub Pro में आपका स्वागत</h3>
+    <p class="sub-t">Login या नया account बनाएँ</p>
+    <div class="tabs">
+      <button id="tabLogin" class="active" onclick="authTab('login')">Login</button>
+      <button id="tabSignup" onclick="authTab('signup')">Sign up</button>
+    </div>
+    <div id="formLogin">
+      <div class="field"><label>Email</label><input id="liEmail" type="email" placeholder="you@email.com"></div>
+      <div class="field"><label>Password</label><input id="liPw" type="password" placeholder="••••••"></div>
+      <button class="btn-main" onclick="doLogin()">Login</button>
+    </div>
+    <div id="formSignup" style="display:none">
+      <div class="field"><label>आपका नाम (profile name)</label><input id="suName" type="text" placeholder="Atul Pal"></div>
+      <div class="field"><label>Email</label><input id="suEmail" type="email" placeholder="you@email.com"></div>
+      <div class="field"><label>Password</label><input id="suPw" type="password" placeholder="••••••"></div>
+      <button class="btn-main" onclick="doSignup()">Create account</button>
+    </div>
+  </div>
+</div>
+
+<!-- PLANS MODAL -->
+<div class="modal" id="plans">
+  <div class="mbox">
+    <button class="mclose" onclick="closeModal('plans')">×</button>
+    <h3>अपना plan चुनें</h3>
+    <p class="sub-t">Premium posters, no ads, HD download और और भी</p>
+    <div class="plan" onclick="choosePlan('plus')">
+      <div class="pname">💎 Poster Plus</div>
+      <div class="price">₹30 <span>/month</span></div>
+      <ul>
+        <li>✅ कोई ads नहीं</li>
+        <li>✅ तुरंत download (बिना रुके)</li>
+        <li>✅ HD quality</li>
+        <li>✅ सभी Daily posters</li>
+        <li>✅ ऊपर साफ़ brand पट्टी (image साफ़)</li>
+      </ul>
+    </div>
+    <div class="plan adv" onclick="choosePlan('advance')">
+      <div class="pname">👑 Advance Plus</div>
+      <div class="price">₹49 <span>/month</span></div>
+      <ul>
+        <li>✅ Poster Plus की सभी चीज़ें</li>
+        <li>✅ Exclusive premium poster packs</li>
+        <li>✅ नए posters पहले (early access)</li>
+        <li>✅ फ़ोटो + नाम personalize 🎨</li>
+        <li>✅ Full HD / 4K</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- PAY MODAL -->
+<div class="modal" id="pay">
+  <div class="mbox">
+    <button class="mclose" onclick="closeModal('pay')">×</button>
+    <h3 id="payTitle">Payment</h3>
+    <p class="sub-t">नीचे QR scan करें या UPI app से pay करें</p>
+    <div class="qrbox"><img id="payQR" src="" alt="UPI QR"></div>
+    <div class="upi-id" id="payUpi"></div>
+    <a class="pay-link" id="payLink" href="#">📲 UPI app में खोलें</a>
+    <ol class="steps">
+      <li>ऊपर दिए UPI ID / QR से payment करें</li>
+      <li>Payment के बाद अपना <b>UPI Transaction / UTR ID</b> नीचे डालें</li>
+      <li>Verify होते ही (कुछ घंटों में) आपका plan active हो जाएगा</li>
+    </ol>
+    <div class="field"><label>UPI Transaction / UTR ID</label><input id="payTxn" type="text" placeholder="जैसे 4012XXXXXXXX"></div>
+    <button class="btn-main" onclick="submitPayment()">✓ मैंने payment कर दिया</button>
+  </div>
+</div>
+
+<!-- EDITOR MODAL -->
+<div class="modal" id="editor">
+  <div class="mbox">
+    <button class="mclose" onclick="closeEditor()">×</button>
+    <h3>🎨 अपनी फ़ोटो लगाएँ</h3>
+    <p class="sub-t">फ़ोटो को drag करके खिसकाएँ, zoom करें, shape चुनें</p>
+    <div class="ed-canvas-wrap"><canvas id="edCanvas"></canvas></div>
+    <div class="ed-controls">
+      <label class="file-btn">📷 फ़ोटो चुनें<input id="edFile" type="file" accept="image/*" onchange="edPhoto(this)"></label>
+      <div class="ed-row"><label>Zoom</label><input id="edZoom" type="range" min="12" max="80" value="34" oninput="edZoom(this.value)"></div>
+      <div class="ed-row"><label>Shape</label>
+        <button class="shape-btn active" data-sh="circle" onclick="edShape('circle')">⭕ Circle</button>
+        <button class="shape-btn" data-sh="square" onclick="edShape('square')">⬛ Square</button>
+      </div>
+      <button class="btn-main" onclick="edDownload()">⬇ Download (नाम पट्टी के साथ)</button>
+      <p class="ed-note">ऊपर website पट्टी + नीचे आपका नाम (सफ़ेद पट्टी) अपने-आप जुड़ जाएगी</p>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb">
+  <button class="x" onclick="closeLb()">×</button>
+  <img id="lbImg" src="" alt="">
+  <div class="cap" id="lbCap"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
