@@ -2,260 +2,751 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex,nofollow">
-<title>PosterHub Pro — Premium पोस्टर, आपके नाम के साथ</title>
-<link rel="stylesheet" href="styles.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PosterHub — Free Good Morning, Good Night, Devotional & Festival Posters | HD Download</title>
+<meta name="description" content="Download 1000+ free HD posters — Good Morning, Good Night, Devotional (Monday to Sunday) and all Festivals like Holi & Diwali. No signup, one-tap free download & share on WhatsApp, Facebook, Instagram & X.">
+<meta name="keywords" content="good morning images, good night images, suprabhat, shubh ratri, devotional posters, god images, somvar, festival posters, holi, diwali, hindi posters, free poster download, status images, whatsapp posters, good morning hd, good night hd">
+<meta name="author" content="PosterHub">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#e8418c">
+<link rel="canonical" href="https://posterhub.example.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23e8418c'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='white'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PosterHub">
+<meta property="og:title" content="PosterHub — Free HD Good Morning, Good Night, Devotional & Festival Posters">
+<meta property="og:description" content="1000+ free HD posters to download & share — Good Morning, Good Night, Devotional (Mon–Sun) and all Festivals.">
+<meta property="og:url" content="https://posterhub.example.com/">
+<meta property="og:image" content="https://posterhub.example.com/assets/good-morning/gm1.jpg">
+<meta property="og:locale" content="hi_IN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PosterHub — Free HD Posters">
+<meta name="twitter:description" content="Good Morning, Good Night, Devotional & Festival posters — free HD download & share.">
+<meta name="twitter:image" content="https://posterhub.example.com/assets/good-morning/gm1.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"PosterHub","alternateName":"PosterHub Free Posters","url":"https://posterhub.example.com/","description":"Free HD Good Morning, Good Night, Devotional and Festival posters to download and share.","inLanguage":"hi","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://posterhub.example.com/?q=SEARCH_TERMS"},"query-input":"required name=search_term_string"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"PosterHub","url":"https://posterhub.example.com/","logo":"https://posterhub.example.com/assets/good-morning/gm1.jpg","sameAs":[]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"क्या PosterHub के posters फ़्री हैं?","acceptedAnswer":{"@type":"Answer","text":"हाँ, सभी posters पूरी तरह फ़्री हैं। आप बिना किसी signup के HD posters download और share कर सकते हैं।"}},{"@type":"Question","name":"कौन-कौन सी categories उपलब्ध हैं?","acceptedAnswer":{"@type":"Answer","text":"Good Morning, Good Night, Devotional (सोमवार से रविवार) और Festival (होली, दिवाली सहित सभी त्योहार)।"}},{"@type":"Question","name":"पोस्टर कैसे share करें?","acceptedAnswer":{"@type":"Answer","text":"हर poster के नीचे WhatsApp, Facebook, Instagram और X के share buttons हैं — एक click में share करें।"}}]}</script>
+<style>
+  :root{
+    --bg:#f6f4f2; --surface:#ffffff; --text:#191919; --soft:#6b6b6b; --faint:#9a9a9a;
+    --border:rgba(0,0,0,.08); --border-soft:rgba(0,0,0,.05);
+    --brand1:#e8418c; --brand2:#f0913b; --radius:16px;
+    --shadow:0 1px 2px rgba(0,0,0,.04), 0 8px 22px rgba(0,0,0,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0e0e0f; --surface:#1a1a1c; --text:#f2f2f2; --soft:#a8a8a8; --faint:#777;
+      --border:rgba(255,255,255,.12); --border-soft:rgba(255,255,255,.07);
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 22px rgba(0,0,0,.5); }
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:var(--bg); color:var(--text);
+    font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans",Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji",sans-serif;
+    -webkit-font-smoothing:antialiased; }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+
+  .hdr{ position:sticky; top:0; z-index:60; display:flex; align-items:center; justify-content:space-between;
+    gap:12px; padding:12px 18px; background:color-mix(in srgb, var(--surface) 80%, transparent);
+    backdrop-filter:saturate(160%) blur(14px); border-bottom:1px solid var(--border-soft); }
+  .brand{ display:flex; align-items:center; gap:10px; font-weight:800; font-size:20px; letter-spacing:-.02em; }
+  .brand .logo{ width:36px; height:36px; border-radius:11px; display:grid; place-items:center; color:#fff;
+    background:linear-gradient(135deg,var(--brand1),var(--brand2)); font-size:19px; box-shadow:0 4px 12px rgba(232,65,140,.4); }
+  .brand .accent{ background:linear-gradient(135deg,var(--brand1),var(--brand2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .pro-btn{ display:inline-flex; align-items:center; gap:6px; padding:9px 16px; border-radius:999px; font-weight:700; font-size:13px;
+    color:#fff; background:linear-gradient(135deg,#7b5cff,#b14df0); box-shadow:0 4px 12px rgba(123,92,255,.4); transition:.15s; }
+  .pro-btn:hover{ filter:brightness(1.08); transform:translateY(-1px); }
+
+  .hero{ position:relative; overflow:hidden; min-height:clamp(600px,94vh,940px); display:flex; align-items:center; justify-content:center; text-align:center; padding:80px 18px 64px; }
+  .hero-bg{ position:absolute; inset:-12% -6%; display:flex; gap:16px; justify-content:center; z-index:0; pointer-events:none; transform:rotate(-8deg) scale(1.25); }
+  .hero-col{ display:flex; flex-direction:column; gap:16px; animation:scrollUp 38s linear infinite; will-change:transform; }
+  .hero-col.alt{ animation-direction:reverse; animation-duration:48s; }
+  .hero-col img{ width:clamp(108px,13.5vw,178px); aspect-ratio:1/1.2; object-fit:cover; border-radius:16px; box-shadow:0 16px 34px rgba(0,0,0,.2); }
+  @keyframes scrollUp{ from{ transform:translateY(0); } to{ transform:translateY(-50%); } }
+  .hero-overlay{ position:absolute; inset:0; z-index:1; background:
+    radial-gradient(circle at 50% 38%, color-mix(in srgb,var(--bg) 45%, transparent), var(--bg) 74%),
+    linear-gradient(to bottom, color-mix(in srgb,var(--bg) 60%, transparent) 0%, var(--bg) 100%); }
+  .hero-content{ position:relative; z-index:2; max-width:780px; animation:fadeUp .6s ease both; }
+  .pill{ display:inline-flex; align-items:center; gap:7px; padding:7px 16px; border-radius:999px; font-size:12.5px; font-weight:700; letter-spacing:.02em;
+    color:var(--brand1); background:color-mix(in srgb,var(--brand1) 12%, var(--surface)); border:1px solid color-mix(in srgb,var(--brand1) 28%, transparent); margin-bottom:20px; box-shadow:var(--shadow); }
+  .pill .dot{ width:7px; height:7px; border-radius:50%; background:var(--brand1); box-shadow:0 0 0 0 rgba(232,65,140,.5); animation:pulse 2s infinite; }
+  @keyframes pulse{ 0%{ box-shadow:0 0 0 0 rgba(232,65,140,.5);} 70%{ box-shadow:0 0 0 8px rgba(232,65,140,0);} 100%{ box-shadow:0 0 0 0 rgba(232,65,140,0);} }
+  .hero h1{ margin:0 0 16px; font-size:clamp(34px,8vw,68px); line-height:1.03; letter-spacing:-.045em; font-weight:800; }
+  .hero h1 .accent{ position:relative; background:linear-gradient(135deg,var(--brand1),var(--brand2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero .sub{ margin:0 auto; max-width:600px; color:var(--soft); font-size:clamp(15px,2.6vw,19px); line-height:1.5; }
+  .hero-search{ display:flex; align-items:center; gap:8px; max-width:540px; margin:30px auto 0; background:var(--surface);
+    border:1px solid var(--border); border-radius:999px; padding:7px 7px 7px 18px; box-shadow:0 16px 38px rgba(0,0,0,.14); }
+  .hero-search .si{ opacity:.5; font-size:16px; }
+  .hero-search input{ flex:1; border:none; background:transparent; color:var(--text); font-size:15px; outline:none; min-width:0; }
+  .hero-search button{ border:none; border-radius:999px; padding:12px 24px; font-weight:700; font-size:14px; color:#fff;
+    background:linear-gradient(135deg,var(--brand1),var(--brand2)); cursor:pointer; transition:.15s; white-space:nowrap; }
+  .hero-search button:hover{ filter:brightness(1.07); }
+  .quick{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:18px; }
+  .quick button{ padding:9px 16px; border-radius:999px; border:1px solid var(--border); background:color-mix(in srgb,var(--surface) 65%, transparent);
+    backdrop-filter:blur(8px); font-weight:600; font-size:13px; cursor:pointer; transition:.15s; color:var(--text); }
+  .quick button:hover{ border-color:var(--brand1); color:var(--brand1); transform:translateY(-2px); }
+  .hero-cta{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:26px; }
+  .btn-primary{ padding:15px 30px; border-radius:999px; font-weight:800; font-size:15px; color:#fff;
+    background:linear-gradient(135deg,var(--brand1),var(--brand2)); box-shadow:0 14px 30px rgba(232,65,140,.45); cursor:pointer; border:none; transition:.16s; }
+  .btn-primary:hover{ transform:translateY(-2px); filter:brightness(1.06); }
+  .btn-ghost{ padding:15px 26px; border-radius:999px; font-weight:700; font-size:15px; color:var(--text);
+    background:var(--surface); border:1px solid var(--border); cursor:pointer; transition:.16s; }
+  .btn-ghost:hover{ transform:translateY(-2px); border-color:var(--brand1); color:var(--brand1); }
+  .trust{ display:flex; gap:24px; justify-content:center; flex-wrap:wrap; margin-top:30px; color:var(--soft); font-size:13px; }
+  .trust div{ display:flex; align-items:center; gap:6px; }
+  .trust b{ color:var(--text); font-size:15px; }
+  .scroll-hint{ position:absolute; bottom:18px; left:50%; transform:translateX(-50%); z-index:2; color:var(--faint); font-size:22px; animation:bob 2s infinite; }
+  @keyframes bob{ 0%,100%{ transform:translate(-50%,0);} 50%{ transform:translate(-50%,8px);} }
+
+  /* Daily stories */
+  .daily{ max-width:1100px; margin:30px auto 0; padding:0 18px; }
+  .daily-head{ display:flex; align-items:baseline; gap:10px; margin-bottom:4px; flex-wrap:wrap; }
+  .daily-head h2{ margin:0; font-size:20px; letter-spacing:-.02em; }
+  .daily-head span{ font-size:12.5px; color:var(--soft); font-weight:600; }
+  .stories{ display:flex; gap:14px; overflow-x:auto; padding:12px 2px; scrollbar-width:none; }
+  .stories::-webkit-scrollbar{ display:none; }
+  .story{ flex:0 0 auto; display:flex; flex-direction:column; align-items:center; gap:7px; width:80px; cursor:pointer; }
+  .story .ring{ width:72px; height:72px; border-radius:50%; padding:3px; background:linear-gradient(135deg,var(--brand1),var(--brand2)); transition:transform .15s; }
+  .story:hover .ring{ transform:scale(1.06); }
+  .story.today .ring{ background:linear-gradient(135deg,#7b5cff,#b14df0); }
+  .story .ring img{ width:100%; height:100%; border-radius:50%; object-fit:cover; border:2.5px solid var(--bg); background:var(--surface); }
+  .story .ring .ph{ width:100%; height:100%; border-radius:50%; display:grid; place-items:center; font-size:22px; background:var(--surface); border:2.5px solid var(--bg); color:var(--faint); }
+  .story.empty{ cursor:default; }
+  .story.empty .ring{ background:var(--border); }
+  .story .d{ font-size:12.5px; font-weight:800; }
+  .story .dd{ font-size:10.5px; color:var(--soft); font-weight:600; }
+  .story.today .d{ color:#8b5cf6; }
+  .story .ring{ position:relative; }
+  .story .cnt{ position:absolute; right:-2px; bottom:-2px; background:linear-gradient(135deg,var(--brand1),var(--brand2)); color:#fff; font-size:10px; font-weight:800; min-width:20px; height:20px; border-radius:999px; display:grid; place-items:center; border:2px solid var(--bg); padding:0 4px; }
+
+  .daym{ position:fixed; inset:0; z-index:110; display:none; justify-content:center; padding:0; background:rgba(0,0,0,.82); backdrop-filter:blur(5px); }
+  .daym.open{ display:flex; animation:fadeUp .25s ease; }
+  .daym-box{ background:var(--bg); width:100%; max-width:560px; height:100%; display:flex; flex-direction:column; box-shadow:0 0 80px rgba(0,0,0,.5); }
+  .daym-head{ position:sticky; top:0; z-index:2; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:15px 18px; background:color-mix(in srgb,var(--surface) 88%, transparent); backdrop-filter:blur(12px); border-bottom:1px solid var(--border-soft); }
+  .daym-head h3{ margin:0; font-size:16px; letter-spacing:-.02em; }
+  .daym-x{ background:var(--surface); border:1px solid var(--border); width:34px; height:34px; border-radius:50%; font-size:15px; cursor:pointer; color:var(--text); flex:0 0 auto; }
+  .daym-list{ flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:26px; }
+  .dayitem{ background:var(--surface); border:1px solid var(--border-soft); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); padding-bottom:14px; }
+  .dayimg{ position:relative; container-type:inline-size; background:var(--border-soft); }
+  .dayimg img{ width:100%; height:auto; display:block; }
+  .dayitem h4{ margin:13px 14px 10px; font-size:15px; }
+  .dayitem .dl{ margin:0 14px; width:calc(100% - 28px); }
+  .dayitem .share{ margin-top:10px; }
+
+  .cats{ display:grid; grid-template-columns:repeat(5,1fr); gap:10px; max-width:880px; margin:30px auto 0; padding:0 18px; scroll-margin-top:70px; }
+  .cat{ position:relative; display:flex; flex-direction:column; align-items:center; gap:8px; padding:16px 6px; border-radius:var(--radius);
+    background:var(--surface); border:1.5px solid var(--border-soft); box-shadow:var(--shadow); cursor:pointer;
+    transition:transform .16s, box-shadow .16s; font-weight:700; font-size:12.5px; text-align:center; overflow:hidden; }
+  .cat:hover{ transform:translateY(-3px); box-shadow:0 14px 30px rgba(0,0,0,.12); }
+  .cat .emoji{ font-size:26px; line-height:1; transition:transform .2s; }
+  .cat:hover .emoji{ transform:scale(1.15); }
+  .cat.active{ border-color:transparent; color:#fff; background:linear-gradient(135deg,var(--brand1),var(--brand2)); box-shadow:0 10px 26px rgba(232,65,140,.4); }
+  @media(max-width:560px){ .cats{ grid-template-columns:repeat(3,1fr); } .cat{ padding:13px 5px; font-size:11.5px; } .cat .emoji{ font-size:22px; } }
+
+  .subbar-wrap{ max-width:1100px; margin:18px auto 0; padding:0 18px; }
+  .subbar{ display:flex; gap:8px; overflow-x:auto; padding:6px 2px; scrollbar-width:none; }
+  .subbar::-webkit-scrollbar{ display:none; }
+  .chip{ flex:0 0 auto; padding:9px 17px; border-radius:999px; border:1px solid var(--border);
+    background:var(--surface); color:var(--soft); font-weight:600; font-size:13px; cursor:pointer; white-space:nowrap; transition:.15s; }
+  .chip:hover{ color:var(--text); transform:translateY(-1px); }
+  .chip.active{ background:var(--text); color:var(--bg); border-color:transparent; }
+
+  .toolbar{ max-width:1100px; margin:16px auto 0; padding:0 18px; display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; scroll-margin-top:70px; }
+  .search{ flex:1; min-width:200px; max-width:420px; position:relative; }
+  .search input{ width:100%; padding:12px 16px 12px 42px; border-radius:999px; border:1px solid var(--border);
+    background:var(--surface); color:var(--text); font-size:14px; transition:.15s; }
+  .search input:focus{ outline:none; border-color:var(--brand1); box-shadow:0 0 0 3px color-mix(in srgb,var(--brand1) 18%, transparent); }
+  .search .ico{ position:absolute; left:15px; top:50%; transform:translateY(-50%); opacity:.5; }
+  .count{ color:var(--soft); font-size:13px; font-weight:600; }
+
+  .ad{ max-width:970px; margin:22px auto; padding:14px; min-height:90px; display:flex; align-items:center; justify-content:center;
+    border:1px dashed var(--border); border-radius:14px; color:var(--faint); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    background:repeating-linear-gradient(45deg, rgba(0,0,0,.02), rgba(0,0,0,.02) 12px, transparent 12px, transparent 24px); }
+
+  .sec{ max-width:1100px; margin:34px auto 2px; padding:0 18px; display:flex; align-items:center; gap:10px; }
+  .sec h2{ margin:0; font-size:21px; letter-spacing:-.02em; display:flex; align-items:center; gap:9px; }
+  .sec .c{ font-size:12px; color:var(--soft); background:var(--surface); border:1px solid var(--border-soft); padding:3px 11px; border-radius:999px; font-weight:600; }
+  .sec .line{ flex:1; height:1px; background:var(--border-soft); }
+
+  #content{ display:block; }
+  .gallery{ max-width:620px; margin:14px auto 0; padding:0 14px 6px;
+    column-count:1; column-gap:16px; }
+  @media(min-width:760px){ .gallery{ max-width:1100px; column-count:2; column-gap:20px; } }
+  @media(min-width:1100px){ .gallery{ column-count:3; } }
+  .card{ background:var(--surface); border:1px solid var(--border-soft); border-radius:var(--radius); overflow:hidden;
+    box-shadow:var(--shadow); transition:transform .18s, box-shadow .18s; animation:fadeUp .4s ease both;
+    break-inside:avoid; margin-bottom:14px; width:100%; }
+  .card:hover{ transform:translateY(-4px); box-shadow:0 16px 34px rgba(0,0,0,.16); }
+  @keyframes fadeUp{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:translateY(0); } }
+  .imgwrap{ position:relative; overflow:hidden; background:var(--border-soft); cursor:pointer; container-type:inline-size; }
+  .imgwrap img{ width:100%; height:auto; display:block; transition:transform .35s ease; }
+  .card:hover .imgwrap img{ transform:scale(1.06); }
+  .wm{ position:absolute; bottom:5%; left:0; right:0; text-align:center; pointer-events:none; z-index:3;
+    font-weight:700; letter-spacing:.06em; color:#fff; opacity:.5; font-size:clamp(8px, 5cqw, 24px);
+    text-shadow:0 1px 4px rgba(0,0,0,.55); }
+  .tag{ position:absolute; top:10px; left:10px; padding:4px 10px; border-radius:999px; font-size:10.5px; font-weight:700;
+    color:#fff; background:rgba(0,0,0,.5); backdrop-filter:blur(4px); z-index:4; }
+  .zoom{ position:absolute; right:10px; top:10px; width:30px; height:30px; border-radius:50%; display:grid; place-items:center;
+    background:rgba(0,0,0,.5); color:#fff; font-size:14px; opacity:0; transition:.2s; z-index:4; }
+  .card:hover .zoom{ opacity:1; }
+  .meta{ padding:12px 13px 14px; }
+  .meta h3{ margin:0 0 10px; font-size:14px; }
+  .dl{ width:100%; display:flex; align-items:center; justify-content:center; gap:6px; padding:10px; border-radius:11px; font-weight:700; font-size:13px;
+    color:#fff; background:linear-gradient(135deg,var(--brand1),var(--brand2)); cursor:pointer; transition:.15s; border:none; }
+  .dl:hover{ filter:brightness(1.06); }
+  .share{ display:flex; gap:7px; margin-top:9px; justify-content:center; }
+  .sh{ width:34px; height:34px; border-radius:50%; border:none; display:grid; place-items:center; cursor:pointer; color:#fff; padding:0; transition:.15s; }
+  .sh svg{ width:16px; height:16px; fill:currentColor; }
+  .sh:hover{ transform:translateY(-2px); filter:brightness(1.08); }
+  .sh.wa{ background:#25D366; }
+  .sh.fb{ background:#1877F2; }
+  .sh.x{ background:#000; }
+  .sh.ig{ background:radial-gradient(circle at 30% 110%, #fdf497, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+  .empty{ text-align:center; padding:54px 20px; color:var(--soft); }
+  .empty .big{ font-size:36px; margin-bottom:10px; }
+
+  .pager{ display:flex; gap:7px; justify-content:center; align-items:center; flex-wrap:wrap; margin:26px auto 6px; padding:0 18px; }
+  .pager button{ min-width:40px; height:40px; padding:0 12px; border-radius:11px; border:1px solid var(--border);
+    background:var(--surface); color:var(--text); font-weight:700; font-size:14px; cursor:pointer; transition:.15s; }
+  .pager button:hover:not(:disabled){ border-color:var(--brand1); color:var(--brand1); }
+  .pager button.active{ background:linear-gradient(135deg,var(--brand1),var(--brand2)); color:#fff; border-color:transparent; }
+  .pager button:disabled{ opacity:.4; cursor:not-allowed; }
+  .pager .dots{ color:var(--faint); padding:0 4px; }
+
+  .seo{ max-width:900px; margin:46px auto 0; padding:0 18px; }
+  .seo h2{ font-size:24px; letter-spacing:-.02em; margin:0 0 12px; }
+  .seo p{ color:var(--soft); line-height:1.7; font-size:15px; }
+  .faq{ margin-top:22px; display:flex; flex-direction:column; gap:10px; }
+  .faq details{ background:var(--surface); border:1px solid var(--border-soft); border-radius:14px; padding:4px 16px; box-shadow:var(--shadow); }
+  .faq summary{ cursor:pointer; font-weight:700; padding:13px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; }
+  .faq summary::-webkit-details-marker{ display:none; }
+  .faq summary::after{ content:"+"; color:var(--brand1); font-size:22px; font-weight:700; }
+  .faq details[open] summary::after{ content:"−"; }
+  .faq p{ margin:0 0 14px; }
+
+  .lb{ position:fixed; inset:0; z-index:100; display:none; align-items:center; justify-content:center; padding:20px;
+    background:rgba(0,0,0,.85); backdrop-filter:blur(5px); }
+  .lb.open{ display:flex; animation:fadeUp .25s ease; }
+  .lb-inner{ max-width:440px; width:100%; text-align:center; }
+  .lb-imgwrap{ position:relative; container-type:inline-size; border-radius:16px; overflow:hidden; box-shadow:0 24px 70px rgba(0,0,0,.6); }
+  .lb-imgwrap img{ width:100%; }
+  .lb-actions{ display:flex; gap:10px; justify-content:center; margin-top:18px; flex-wrap:wrap; }
+  .lb-actions a, .lb-actions button{ padding:12px 22px; border-radius:999px; font-weight:700; font-size:14px; border:none; cursor:pointer; }
+  .lb-dl{ color:#fff; background:linear-gradient(135deg,var(--brand1),var(--brand2)); }
+  .lb-close{ color:#fff; background:rgba(255,255,255,.18); }
+  .lb-share{ display:flex; gap:9px; justify-content:center; margin-top:14px; }
+
+  /* Download modal (ad + countdown) */
+  .dlm{ position:fixed; inset:0; z-index:120; display:none; align-items:center; justify-content:center; padding:18px; background:rgba(0,0,0,.78); backdrop-filter:blur(5px); }
+  .dlm.open{ display:flex; animation:fadeUp .25s ease; }
+  .dlm-box{ background:var(--surface); border-radius:18px; max-width:380px; width:100%; padding:18px; text-align:center; box-shadow:0 30px 80px rgba(0,0,0,.5); position:relative; }
+  .dlm-ad{ min-height:200px; display:flex; align-items:center; justify-content:center; border:1px dashed var(--border); border-radius:12px; color:var(--faint); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; margin-bottom:16px; background:repeating-linear-gradient(45deg, rgba(0,0,0,.02), rgba(0,0,0,.02) 12px, transparent 12px, transparent 24px); }
+  .dlm-status{ font-size:14px; color:var(--soft); margin-bottom:10px; }
+  .dlm-status b{ color:var(--brand1); font-size:18px; }
+  .dlm-bar{ height:7px; border-radius:999px; background:var(--border-soft); overflow:hidden; margin-bottom:14px; }
+  .dlm-bar i{ display:block; height:100%; width:0; border-radius:999px; background:linear-gradient(135deg,var(--brand1),var(--brand2)); transition:width 1s linear; }
+  .dlm-btn{ width:100%; padding:13px; border-radius:12px; border:none; font-weight:800; font-size:15px; color:#fff; background:linear-gradient(135deg,var(--brand1),var(--brand2)); cursor:pointer; transition:.15s; }
+  .dlm-btn:disabled{ opacity:.55; cursor:not-allowed; filter:grayscale(.3); }
+  .dlm-x{ position:absolute; top:9px; right:12px; background:none; border:none; font-size:18px; color:var(--faint); cursor:pointer; }
+
+  .ftr{ margin-top:40px; background:#141414; color:#fff; padding:40px 18px 26px; }
+  @media (prefers-color-scheme: dark){ .ftr{ background:#070708; } }
+  .ftr .in{ max-width:1100px; margin:0 auto; display:flex; flex-wrap:wrap; gap:28px; justify-content:space-between; }
+  .ftr h4{ margin:0 0 10px; font-size:15px; }
+  .ftr a, .ftr p{ color:rgba(255,255,255,.7); font-size:13px; margin:0 0 7px; }
+  .ftr a:hover{ color:#fff; }
+  .ftr .copy{ max-width:1100px; margin:22px auto 0; padding-top:16px; border-top:1px solid rgba(255,255,255,.14);
+    text-align:center; color:rgba(255,255,255,.55); font-size:12px; }
+  .loading{ text-align:center; padding:54px; color:var(--soft); }
+</style>
 </head>
 <body>
 
-<!-- ===================== LANDING ===================== -->
-<div id="view-landing" class="view show">
-  <nav class="lnav">
-    <div class="brand"><span class="logo">✦</span> PosterHub <b>Pro</b></div>
-    <div class="nav-right" id="navAuth"></div>
-  </nav>
-
-  <header class="hero">
-    <div class="hero-bg"></div>
-    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
-    <div class="hero-in">
-      <div class="hero-text">
-        <span class="pill">🔥 रोज़ नए Premium पोस्टर</span>
-        <h1>अपने <span class="grad">नाम और फ़ोटो</span> के साथ<br>शानदार पोस्टर बनाएँ</h1>
-        <p>हर दिन Good Morning, त्यौहार, दिन-विशेष और exclusive premium पोस्टर। No ads, HD download, और अपनी फ़ोटो personalize — सब एक जगह।</p>
-        <div class="hero-cta">
-          <button class="btn-xl" onclick="navTo('#/signup')">🚀 अभी शुरू करें</button>
-          <button class="btn-xl ghost" onclick="navTo('#/pricing')">₹30 से — Plans देखें</button>
-        </div>
-        <div class="hero-trust">⭐⭐⭐⭐⭐ हड़ारों खुश users · ₹1/दिन से भी कम में</div>
-      </div>
-      <div class="hero-art">
-        <div class="float-card fc1">🌅<span>Good Morning</span></div>
-        <div class="float-card fc2">👑<span>Premium</span></div>
-        <div class="float-card fc3">🎨<span>Your Photo</span></div>
-        <div class="phone">
-          <div class="phone-top">PosterHub Pro</div>
-          <div class="phone-grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        </div>
-      </div>
-    </div>
-    <div class="wave"></div>
-  </header>
-
-  <section class="stats reveal">
-    <div class="stat"><div class="statnum" data-to="500" data-suf="+">0</div><span>Premium Posters</span></div>
-    <div class="stat"><div class="statnum" data-to="50" data-suf="+">0</div><span>रोज़ नए Daily</span></div>
-    <div class="stat"><div class="statnum" data-to="100" data-suf="%">0</div><span>Ad-free + HD</span></div>
-  </section>
-
-  <section class="feat">
-    <h2 class="reveal">क्यों PosterHub <span class="grad">Pro?</span></h2>
-    <div class="feat-grid">
-      <div class="fcard reveal"><div class="fi">🚫</div><h3>कोई ads नहीं</h3><p>बिना किसी रुकावट के सीधा download।</p></div>
-      <div class="fcard reveal"><div class="fi">⚡</div><h3>तुरंत HD download</h3><p>10 सेकंड रुकना नहीं — एक click में HD/4K।</p></div>
-      <div class="fcard reveal"><div class="fi">🎨</div><h3>अपनी फ़ोटो + नाम</h3><p>फ़ोटो खिसकाएँ, circle/square, नीचे अपना नाम।</p></div>
-      <div class="fcard reveal"><div class="fi">👑</div><h3>Exclusive packs</h3><p>सिर्फ members के लिए premium पोस्टर।</p></div>
-      <div class="fcard reveal"><div class="fi">📅</div><h3>रोज़ नया content</h3><p>हर दिन, हर त्यौहार और दिन-विशेष पोस्टर।</p></div>
-      <div class="fcard reveal"><div class="fi">📲</div><h3>आसान share</h3><p>WhatsApp, Instagram, Facebook — एक tap।</p></div>
-    </div>
-  </section>
-
-  <section class="showcase-wrap reveal">
-    <h2>एक झलक — हमारे <span class="grad">posters</span></h2>
-    <div class="showcase" id="showcase"></div>
-  </section>
-
-  <section class="how reveal">
-    <h2>कैसे काम करता है</h2>
-    <div class="steps3">
-      <div class="step"><span>1</span><h3>Account बनाएँ</h3><p>नाम, WhatsApp और email से 30 सेकंड में।</p></div>
-      <div class="step"><span>2</span><h3>Plan लें</h3><p>UPI से ₹30 या ₹49 में pay करें।</p></div>
-      <div class="step"><span>3</span><h3>Download करें</h3><p>अनगिनत HD posters — अपने नाम के साथ।</p></div>
-    </div>
-  </section>
-
-  <section class="price-prev reveal">
-    <h2>सीधे-सादे <span class="grad">plans</span></h2>
-    <div class="pp-cards">
-      <div class="pp">
-        <div class="pp-name">💎 Poster Plus</div>
-        <div class="pp-price">₹30<span>/month</span></div>
-        <ul><li>कोई ads नहीं</li><li>तुरंत HD download</li><li>सभी Daily posters</li><li>ऊपर साफ़ brand पट्टी</li></ul>
-        <button class="btn-main" onclick="navTo('#/signup')">चुनें</button>
-      </div>
-      <div class="pp best">
-        <div class="pp-tag">⭐ सबसे लोकप्रिय</div>
-        <div class="pp-name">👑 Advance Plus</div>
-        <div class="pp-price">₹49<span>/month</span></div>
-        <ul><li>Poster Plus की सभी चीज़ें</li><li>Exclusive premium packs</li><li>फ़ोटो + नाम personalize 🎨</li><li>नए posters पहले (early access)</li><li>Full HD / 4K</li></ul>
-        <button class="btn-main" onclick="navTo('#/signup')">चुनें</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-banner reveal">
-    <h2>आज ही शुरू करें — ₹1/दिन से भी कम में</h2>
-    <button class="btn-xl" onclick="navTo('#/signup')">🚀 Account बनाएँ</button>
-  </section>
-
-  <footer class="lfoot">
-    PosterHub Pro · Premium (Advance) version<br>
-    ₹30 Poster Plus · ₹49 Advance Plus · सभी posters @JitendraUno
-  </footer>
-</div>
-
-<!-- ===================== PRICING ===================== -->
-<div id="view-pricing" class="view">
-  <nav class="lnav">
-    <div class="brand" onclick="navTo('#/home')" style="cursor:pointer"><span class="logo">✦</span> PosterHub <b>Pro</b></div>
-    <div class="nav-right"><button class="nav-link" onclick="navTo('#/home')">← Home</button></div>
-  </nav>
-  <div class="page-pad">
-    <h1 class="ph1">अपना <span class="grad">plan</span> चुनें</h1>
-    <p class="psub" id="curPlanNote"></p>
-    <p class="psub">कभी भी cancel कर सकते हैं · UPI से सुरक्षित payment</p>
-    <div class="plan-cards">
-      <div class="plan-card">
-        <div class="pc-head"><span class="pc-name">💎 Poster Plus</span><span class="pc-price">₹30<small>/month</small></span></div>
-        <ul class="pc-feat">
-          <li>✅ कोई ads नहीं</li>
-          <li>✅ तुरंत download (बिना रुके)</li>
-          <li>✅ HD quality</li>
-          <li>✅ सभी Daily posters</li>
-          <li>✅ ऊपर साफ़ brand पट्टी</li>
-          <li class="no">✖ Exclusive premium packs</li>
-          <li class="no">✖ फ़ोटो personalize</li>
-        </ul>
-        <button class="btn-main" onclick="choosePlan('plus')">₹30 में लें</button>
-      </div>
-      <div class="plan-card best">
-        <div class="pc-tag">⭐ सबसे लोकप्रिय</div>
-        <div class="pc-head"><span class="pc-name">👑 Advance Plus</span><span class="pc-price">₹49<small>/month</small></span></div>
-        <ul class="pc-feat">
-          <li>✅ Poster Plus की सभी चीज़ें</li>
-          <li>✅ Exclusive premium poster packs</li>
-          <li>✅ नए posters पहले (early access)</li>
-          <li>✅ फ़ोटो + नाम personalize 🎨</li>
-          <li>✅ Full HD / 4K</li>
-        </ul>
-        <button class="btn-main" onclick="choosePlan('advance')">₹49 में लें</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ===================== LOGIN ===================== -->
-<div id="view-login" class="view">
-  <div class="auth-wrap">
-    <div class="auth-bg"></div>
-    <div class="auth-card">
-      <div class="brand center" onclick="navTo('#/home')" style="cursor:pointer"><span class="logo">✦</span> PosterHub <b>Pro</b></div>
-      <h2>वापसी पर स्वागत 👋</h2>
-      <p class="sub-t">Login करके अपने posters पाएं</p>
-      <div class="field"><label>Email</label><input id="liEmail" type="email" placeholder="you@email.com"></div>
-      <div class="field"><label>Password</label><input id="liPw" type="password" placeholder="••••••"></div>
-      <button id="liBtn" class="btn-main" onclick="doLogin()">Login</button>
-      <p class="auth-alt">नए हैं? <a onclick="navTo('#/signup')">Account बनाएँ</a></p>
-    </div>
-  </div>
-</div>
-
-<!-- ===================== SIGNUP ===================== -->
-<div id="view-signup" class="view">
-  <div class="auth-wrap">
-    <div class="auth-bg"></div>
-    <div class="auth-card">
-      <div class="brand center" onclick="navTo('#/home')" style="cursor:pointer"><span class="logo">✦</span> PosterHub <b>Pro</b></div>
-      <h2>नया account बनाएँ ✨</h2>
-      <p class="sub-t">सिर्फ़ 30 सेकंड — फिर हज़ारों premium posters</p>
-      <div class="field"><label>आपका नाम (profile name)</label><input id="suName" type="text" placeholder="Atul Pal"></div>
-      <div class="field"><label>WhatsApp number</label><input id="suWa" type="tel" inputmode="numeric" placeholder="जैसे 9876543210"></div>
-      <div class="field"><label>Email</label><input id="suEmail" type="email" placeholder="you@email.com"></div>
-      <div class="field"><label>Password</label><input id="suPw" type="password" placeholder="••••••"></div>
-      <button id="suBtn" class="btn-main" onclick="doSignup()">✨ Account बनाएँ</button>
-      <p class="auth-alt">पहले से account है? <a onclick="navTo('#/login')">Login करें</a></p>
-    </div>
-  </div>
-</div>
-
-<!-- ===================== APP / GALLERY ===================== -->
-<div id="view-app" class="view">
   <header class="hdr">
-    <div class="brand" onclick="navTo('#/home')" style="cursor:pointer"><span class="logo">✦</span> PosterHub <b>Pro</b></div>
-    <div class="hdr-right">
-      <span id="helloUser" class="hello"></span>
-      <span id="planBadge" class="badge hidden"></span>
-      <button class="btn-ghost" onclick="navTo('#/pricing')">⭐ Plans</button>
-      <button id="authBtn" class="btn-ghost" onclick="navTo('#/login')">Login</button>
-    </div>
+    <a class="brand" href="#"><span class="logo">✦</span><span>Poster<span class="accent">Hub</span></span></a>
+    <a class="pro-btn" href="pro.html">⭐ Go Pro</a>
   </header>
 
-  <div class="searchbar">
-    <input id="search" type="text" placeholder="🔍 Search posters..." oninput="onSearch()">
-    <span class="count" id="count">0 posters</span>
+  <section class="hero">
+    <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="pill"><span class="dot"></span> 1000+ Free HD Posters · रोज़ नए</span>
+      <h1>हज़ारों <span class="accent">सुंदर Posters</span><br>फ़्री Download करें</h1>
+      <p class="sub" id="tagline">Good Morning, Good Night, Devotional और Festival — हर मौके के लिए HD posters, एक click में download और share।</p>
+      <form class="hero-search" onsubmit="heroSearch(event)">
+        <span class="si">🔍</span>
+        <input id="heroInput" type="text" placeholder="Search… जैसे Good Morning, सोमवार, होली" aria-label="Search posters">
+        <button type="submit">Search</button>
+      </form>
+      <div class="quick" id="quick"></div>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="document.getElementById('cats').scrollIntoView({behavior:'smooth'})">🎨 Browse All Posters</button>
+        <a class="btn-ghost" href="pro.html">⭐ Go Pro</a>
+      </div>
+      <div class="trust">
+        <div>⭐ <b>4.9</b>/5</div>
+        <div>📁 <b id="statCount">—</b> Posters</div>
+        <div>🆓 100% Free</div>
+        <div>⚡ HD Quality</div>
+      </div>
+    </div>
+    <div class="scroll-hint">↓</div>
+  </section>
+
+  <section class="daily">
+    <div class="daily-head"><h2>📅 Daily Posters</h2><span>आने वाले 7 दिन · रोज़ अपडेट</span></div>
+    <div class="stories" id="stories"></div>
+  </section>
+
+  <nav class="cats" id="cats" aria-label="Poster categories"></nav>
+
+  <div class="subbar-wrap"><div class="subbar" id="subbar" style="display:none;"></div></div>
+
+  <div class="ad">Advertisement — 970 × 90</div>
+
+  <div class="toolbar">
+    <div class="search"><span class="ico">🔍</span><input id="search" type="text" placeholder="Search posters..." oninput="onSearch()" aria-label="Filter posters"></div>
+    <div class="count" id="count"></div>
   </div>
 
-  <div class="daily" id="daily"></div>
-  <div class="catbar" id="cats"></div>
-  <div class="subbar" id="subbar" style="display:none"></div>
+  <main id="content">
+    <div class="loading">लोड हो रहा है…</div>
+  </main>
 
-  <main id="content"></main>
   <div class="pager" id="pager"></div>
 
-  <footer class="lfoot">PosterHub Pro · सभी posters @JitendraUno</footer>
-</div>
+  <div class="ad">Advertisement — 728 × 90</div>
 
-<!-- ===================== PAY MODAL ===================== -->
-<div class="modal" id="pay">
-  <div class="mbox">
-    <button class="mclose" onclick="closeModal('pay')">×</button>
-    <h3 id="payTitle">Payment</h3>
-    <p class="sub-t">नीचे QR scan करें या UPI app से pay करें</p>
-    <div class="qrbox"><img id="payQR" src="" alt="UPI QR"></div>
-    <div class="upi-id" id="payUpi"></div>
-    <a class="pay-link" id="payLink" href="#">📲 UPI app में खोलें</a>
-    <ol class="steps">
-      <li>ऊपर दिए UPI ID / QR से payment करें</li>
-      <li>Payment के बाद अपना <b>UPI Transaction / UTR ID</b> नीचे डालें</li>
-      <li>Verify होते ही (कुछ घंटों में) आपका plan active हो जाएगा</li>
-    </ol>
-    <div class="field"><label>UPI Transaction / UTR ID</label><input id="payTxn" type="text" placeholder="जैसे 4012XXXXXXXX"></div>
-    <button class="btn-main" onclick="submitPayment()">✓ मैंने payment कर दिया</button>
-  </div>
-</div>
+  <section class="seo">
+    <h2>PosterHub — फ़्री HD Posters का घर</h2>
+    <p>PosterHub पर आपको हज़ारों <strong>Good Morning</strong> (सुप्रभात), <strong>Good Night</strong> (शुभ रात्रि), <strong>Devotional</strong> (सोमवार से रविवार तक भगवान के posters) और हर तरह के <strong>Festival</strong> posters (होली, दिवाली सहित) फ़्री में मिलते हैं। सभी posters HD quality में हैं और एक click में download किए जा सकते हैं — कोई signup या लॉगिन नहीं। अपने पसंदीदा poster को WhatsApp, Facebook, Instagram और X पर सीधे share करें।</p>
+    <div class="faq">
+      <details><summary>क्या सभी posters फ़्री हैं?</summary><p>हाँ, PosterHub के सभी posters पूरी तरह फ़्री हैं। आप बिना signup के HD में download और share कर सकते हैं।</p></details>
+      <details><summary>कौन-कौन सी categories हैं?</summary><p>Good Morning, Good Night, Devotional (सोमवार–रविवार) और Festival (होली, दिवाली सहित सभी त्योहार)।</p></details>
+      <details><summary>Poster कैसे share करें?</summary><p>हर poster के नीचे WhatsApp, Facebook, Instagram और X के share buttons हैं — एक click में अपनों के साथ share करें।</p></details>
+    </div>
+  </section>
 
-<!-- ===================== EDITOR MODAL ===================== -->
-<div class="modal" id="editor">
-  <div class="mbox">
-    <button class="mclose" onclick="closeEditor()">×</button>
-    <h3>🎨 अपनी फ़ोटो लगाएँ</h3>
-    <p class="sub-t">फ़ोटो को drag करके खिसकाएँ, zoom करें, shape चुनें</p>
-    <div class="ed-canvas-wrap"><canvas id="edCanvas"></canvas></div>
-    <div class="ed-controls">
-      <label class="file-btn">📷 फ़ोटो चुनें<input id="edFile" type="file" accept="image/*" onchange="edPhoto(this)"></label>
-      <div class="ed-row"><label>Zoom</label><input id="edZoom" type="range" min="12" max="80" value="34" oninput="edZoom(this.value)"></div>
-      <div class="ed-row"><label>Shape</label>
-        <button class="shape-btn active" data-sh="circle" onclick="edShape('circle')">⭕ Circle</button>
-        <button class="shape-btn" data-sh="square" onclick="edShape('square')">⬛ Square</button>
+  <footer class="ftr">
+    <div class="in">
+      <div style="max-width:260px;">
+        <h4>✦ PosterHub</h4>
+        <p>हर मौके के लिए सुंदर posters — फ़्री download करें और अपनों के साथ शेयर करें।</p>
       </div>
-      <button class="btn-main" onclick="edDownload()">⬇ Download (नाम पट्टी के साथ)</button>
-      <p class="ed-note">ऊपर website पट्टी + नीचे आपका नाम (सफ़ेद पट्टी) अपने-आप जुड़ जाएगी</p>
+      <div>
+        <h4>Categories</h4>
+        <a href="#" onclick="go('all');return false;">All</a><br>
+        <a href="#" onclick="go('good-morning');return false;">Good Morning</a><br>
+        <a href="#" onclick="go('good-night');return false;">Good Night</a><br>
+        <a href="#" onclick="go('devotional');return false;">Devotional</a><br>
+        <a href="#" onclick="go('festival');return false;">Festival</a>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <a href="#">About Us</a><br>
+        <a href="#">Contact</a><br>
+        <a href="#">Privacy Policy</a><br>
+        <a href="pro.html">Go Pro ⭐</a>
+      </div>
+    </div>
+    <div class="copy">© 2026 PosterHub. All posters by the PosterHub team.</div>
+  </footer>
+
+  <div class="daym" id="dayModal" onclick="if(event.target===this)closeDay()">
+    <div class="daym-box">
+      <div class="daym-head"><h3 id="dayTitle"></h3><button class="daym-x" onclick="closeDay()">✕</button></div>
+      <div class="daym-list" id="dayList"></div>
     </div>
   </div>
-</div>
 
-<!-- ===================== LIGHTBOX ===================== -->
-<div class="lb" id="lb">
-  <button class="x" onclick="closeLb()">×</button>
-  <img id="lbImg" src="" alt="">
-  <div class="cap" id="lbCap"></div>
-</div>
+  <div class="dlm" id="dlModal" onclick="if(event.target===this)closeDl()">
+    <div class="dlm-box">
+      <button class="dlm-x" onclick="closeDl()">✕</button>
+      <div class="dlm-ad">Advertisement — 300 × 250</div>
+      <div class="dlm-status" id="dlStatus">Download शुरू होने में <b id="dlCount">10</b> सेकंड…</div>
+      <div class="dlm-bar"><i id="dlBar"></i></div>
+      <button class="dlm-btn" id="dlGo" disabled>⏳ रुकिए…</button>
+    </div>
+  </div>
 
-<div class="toast" id="toast"></div>
+  <div class="lb" id="lb" onclick="if(event.target===this)closeLb()">
+    <div class="lb-inner">
+      <div class="lb-imgwrap"><img id="lbImg" src="" alt=""><span class="wm" id="lbWm"></span></div>
+      <div class="lb-actions">
+        <button class="lb-dl" id="lbDl">⬇ Download</button>
+        <button class="lb-close" onclick="closeLb()">✕ Close</button>
+      </div>
+      <div class="lb-share" id="lbShare"></div>
+    </div>
+  </div>
 
-<script src="config.js"></script>
-<script src="posters.js"></script>
-<script src="app.js"></script>
+<script>
+  const PAGE_SIZE = 10;
+  let DATA=null, current=null, POOL=[], page=1;
+  let ABOUT='', SITE='', WM='@JitendraUno';
+  let lbSrc='', lbTitle='';
+  let dlTimer=null, dlPending=null;
+
+  const IC = {
+    wa:'<svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.157 5.335 5.492 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.516 5.26l-.999 3.648 3.972-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>',
+    fb:'<svg viewBox="0 0 24 24"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 011.141.195v3.325a8.623 8.623 0 00-.653-.036 26.805 26.805 0 00-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 00-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647z"/></svg>',
+    x:'<svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932 6.39-6.933zm-1.291 19.494h2.039L6.486 3.24H4.298z"/></svg>',
+    ig:'<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163C8.741 0 8.332.014 7.052.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>'
+  };
+
+  function shuffle(arr){
+    const a = arr.slice();
+    for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+    return a;
+  }
+
+  async function init(){
+    try{
+      const res = await fetch('posters.json', {cache:'no-store'});
+      DATA = await res.json();
+    }catch(e){
+      document.getElementById('content').innerHTML =
+        '<div class="empty"><div class="big">⚠️</div>posters.json लोड नहीं हुआ। कृपया site को GitHub Pages / local server पर खोलें।</div>';
+      return;
+    }
+    ABOUT = (DATA.site && DATA.site.shareText) || 'PosterHub से यह सुंदर poster — फ़्री download करें:';
+    SITE  = (DATA.site && DATA.site.url) || (location.origin + location.pathname);
+    WM    = (DATA.site && (DATA.site.watermark || DATA.site.brand)) || '@JitendraUno';
+    if(DATA.site && DATA.site.tagline) document.getElementById('tagline').textContent = DATA.site.tagline;
+    buildCats();
+    buildQuick();
+    buildHeroMosaic();
+    buildDaily();
+    let total=0; DATA.categories.forEach(c=> total += countCat(c));
+    document.getElementById('statCount').textContent = total + '+';
+    document.getElementById('dlGo').onclick=()=>{ if(dlPending) doDownload(dlPending.src, dlPending.title); closeDl(); };
+    go('all');
+    const qp=new URLSearchParams(location.search).get('q');
+    if(qp){ document.getElementById('search').value=qp; document.getElementById('heroInput').value=qp; renderAll(); }
+  }
+
+  function countCat(c){
+    let n = (c.posters||[]).length;
+    (c.subs||[]).forEach(s=> n += (s.posters||[]).length);
+    return n;
+  }
+
+  function catItems(c){
+    let items=[];
+    if(c.subs && c.subs.length){
+      c.subs.forEach(s=> (s.posters||[]).forEach(p=> items.push({...p, folder:s.folder, subLabel:s.label})));
+    } else {
+      (c.posters||[]).forEach(p=> items.push({...p, folder:c.folder, subLabel:c.label}));
+    }
+    return items;
+  }
+
+  function allItems(){ let a=[]; DATA.categories.forEach(c=> a=a.concat(catItems(c))); return a; }
+
+  function buildHeroMosaic(){
+    const bg=document.getElementById('heroBg');
+    const base=allItems();
+    if(!base.length){ bg.style.display='none'; return; }
+    const cols=5;
+    let html='';
+    for(let c=0;c<cols;c++){
+      let set=shuffle(base);
+      while(set.length<5) set=set.concat(set);
+      set=set.slice(0,5);
+      const imgs=set.map(p=>'<img loading="lazy" src="'+p.folder+'/'+p.file+'" alt="">').join('');
+      html+='<div class="hero-col'+(c%2?' alt':'')+'">'+imgs+imgs+'</div>';
+    }
+    bg.innerHTML=html;
+  }
+
+  function buildQuick(){
+    const q=document.getElementById('quick');
+    q.innerHTML=DATA.categories.map(c=>'<button onclick="go(\''+c.key+'\')">'+(c.icon||'')+' '+c.label+'</button>').join('');
+  }
+
+  function buildDaily(){
+    const cfg=(DATA && DATA.daily) || {base:'assets/daily', days:{}};
+    const base=cfg.base||'assets/daily';
+    const days=cfg.days||{};
+    const wrap=document.getElementById('stories');
+    const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const DN=['रवि','सोम','मंगल','बुध','गुरु','शुक्र','शनि'];
+    const today=new Date(); let html='';
+    for(let i=0;i<7;i++){
+      const d=new Date(today); d.setDate(today.getDate()+i);
+      const dd=String(d.getDate()).padStart(2,'0'), mm=String(d.getMonth()+1).padStart(2,'0');
+      const key=dd+'-'+mm;
+      const label=d.getDate()+' '+M[d.getMonth()];
+      const day=days[key];
+      const has=!!(day && day.posters && day.posters.length);
+      const thumb=has ? base+'/'+key+'/'+day.posters[0].file : '';
+      const sub=(i===0?'आज':DN[d.getDay()]);
+      const inner = has
+        ? '<img loading="lazy" src="'+thumb+'" alt="'+label+' posters">'+(day.posters.length>1?'<span class="cnt">'+day.posters.length+'</span>':'')
+        : '<div class="ph">📷</div>';
+      html+='<div class="story'+(i===0?' today':'')+(has?'':' empty')+'" data-key="'+key+'" data-label="'+label+'" onclick="openDailyDay(this)">'
+        +'<div class="ring">'+inner+'</div>'
+        +'<div class="d">'+label+'</div>'
+        +'<div class="dd">'+(day&&day.label?day.label:sub)+'</div>'
+      +'</div>';
+    }
+    wrap.innerHTML=html;
+  }
+  function openDailyDay(el){
+    const key=el.dataset.key, label=el.dataset.label;
+    const cfg=DATA.daily||{}; const base=cfg.base||'assets/daily';
+    const day=(cfg.days||{})[key];
+    document.getElementById('search').value='';
+    document.querySelectorAll('.cat').forEach(c=>c.classList.remove('active'));
+    document.getElementById('subbar').style.display='none';
+    const title='📅 '+label+(day&&day.label?' · '+day.label:'');
+    const items=(day && day.posters) ? day.posters.map(function(p){ return {file:p.file, title:p.title, folder:base+'/'+key, subLabel:(day.label||label)}; }) : [];
+    current={ key:'__daily__', _dailyTitle:title };
+    POOL=items;
+    page=1;
+    render();
+    document.getElementById('content').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  function closeDay(){ const m=document.getElementById('dayModal'); if(m) m.classList.remove('open'); }
+
+  function buildCats(){
+    const wrap = document.getElementById('cats');
+    wrap.innerHTML='';
+    const tabs=[{key:'all', label:'All', icon:'🗂️'}].concat(DATA.categories);
+    tabs.forEach(c=>{
+      const el=document.createElement('div');
+      el.className='cat'; el.dataset.key=c.key;
+      el.innerHTML='<span class="emoji">'+(c.icon||'🖼️')+'</span><span>'+c.label+'</span>';
+      el.onclick=()=>go(c.key);
+      wrap.appendChild(el);
+    });
+  }
+
+  function setActive(key){ document.querySelectorAll('.cat').forEach(el=> el.classList.toggle('active', el.dataset.key===key)); }
+
+  function go(key){
+    document.getElementById('search').value='';
+    setActive(key);
+    const subbar=document.getElementById('subbar');
+    if(key==='all'){
+      current={key:'all'}; subbar.style.display='none';
+      document.getElementById('pager').innerHTML='';
+      renderAll();
+      document.getElementById('cats').scrollIntoView({behavior:'smooth', block:'start'});
+      return;
+    }
+    current = DATA.categories.find(c=>c.key===key);
+    if(current.subs && current.subs.length){
+      current._sub='all';
+      subbar.style.display='flex'; subbar.innerHTML='';
+      const mk=(k,label)=>{ const ch=document.createElement('div'); ch.className='chip'+(k===current._sub?' active':''); ch.textContent=label;
+        ch.onclick=()=>{ current._sub=k; document.querySelectorAll('#subbar .chip').forEach(x=>x.classList.remove('active')); ch.classList.add('active'); buildPool(); }; subbar.appendChild(ch); };
+      mk('all','सभी');
+      current.subs.forEach(s=> mk(s.key,s.label));
+    } else { subbar.style.display='none'; }
+    buildPool();
+    document.getElementById('cats').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  function buildPool(){
+    let raw=[];
+    if(current.subs && current.subs.length){
+      const subs=(current._sub==='all')?current.subs:current.subs.filter(s=>s.key===current._sub);
+      subs.forEach(s=> (s.posters||[]).forEach(p=> raw.push({...p, folder:s.folder, subLabel:s.label})));
+    } else {
+      (current.posters||[]).forEach(p=> raw.push({...p, folder:current.folder, subLabel:current.label}));
+    }
+    POOL = shuffle(raw);
+    page = 1;
+    render();
+  }
+
+  function onSearch(){ if(current && current.key==='all'){ renderAll(); } else { page=1; render(); } }
+
+  function matchQ(p,q){ return (p.title||'').toLowerCase().includes(q) || (p.subLabel||'').toLowerCase().includes(q); }
+
+  function cardHTML(p,i){
+    const src=p.folder+'/'+p.file;
+    const t=(p.title||'Poster').replace(/"/g,'&quot;');
+    const safe=src.replace(/'/g,"\\'");
+    const jt=(p.title||'PosterHub').replace(/'/g,"\\'").replace(/"/g,'');
+    return '<article class="card" style="animation-delay:'+((i%10)*0.03)+'s">'
+      + '<div class="imgwrap" onclick="openLb(\''+safe+'\',\''+jt+'\')">'
+      +   '<img loading="lazy" src="'+src+'" alt="'+t+' poster">'
+      +   '<span class="wm">'+WM+'</span>'
+      +   '<span class="tag">'+(p.subLabel||'')+'</span>'
+      +   '<span class="zoom">⚶</span>'
+      + '</div>'
+      + '<div class="meta"><h3>'+t+'</h3>'
+      +   '<button class="dl" onclick="dl(\''+safe+'\',\''+jt+'\')">⬇ Download</button>'
+      +   '<div class="share">'
+      +     '<button class="sh wa" title="WhatsApp" aria-label="Share on WhatsApp" onclick="shareTo(\'wa\',\''+safe+'\')">'+IC.wa+'</button>'
+      +     '<button class="sh fb" title="Facebook" aria-label="Share on Facebook" onclick="shareTo(\'fb\',\''+safe+'\')">'+IC.fb+'</button>'
+      +     '<button class="sh ig" title="Instagram" aria-label="Share on Instagram" onclick="shareTo(\'ig\',\''+safe+'\')">'+IC.ig+'</button>'
+      +     '<button class="sh x" title="X" aria-label="Share on X" onclick="shareTo(\'x\',\''+safe+'\')">'+IC.x+'</button>'
+      +   '</div>'
+      + '</div></article>';
+  }
+
+  function render(){
+    const q=(document.getElementById('search').value||'').toLowerCase().trim();
+    const items = q ? POOL.filter(p=>matchQ(p,q)) : POOL;
+    const c=document.getElementById('content');
+    document.getElementById('count').textContent = items.length + ' posters';
+    const head = (current && current._dailyTitle) ? '<div class="sec"><h2>'+current._dailyTitle+'</h2><span class="c">'+items.length+'</span><span class="line"></span></div>' : '';
+    if(!items.length){
+      c.innerHTML=head+'<div class="empty"><div class="big">📭</div>इस दिन/category में अभी कोई poster नहीं है।<br>posters.json / assets में जोड़ें।</div>';
+      document.getElementById('pager').innerHTML=''; return;
+    }
+    const pages=Math.ceil(items.length/PAGE_SIZE);
+    if(page>pages) page=pages;
+    const start=(page-1)*PAGE_SIZE;
+    const slice=items.slice(start, start+PAGE_SIZE);
+    c.innerHTML=head+'<div class="gallery">'+slice.map((p,i)=>cardHTML(p,i)).join('')+'</div>';
+    renderPager(pages);
+  }
+
+  function renderAll(){
+    const q=(document.getElementById('search').value||'').toLowerCase().trim();
+    const c=document.getElementById('content');
+    let html=''; let total=0;
+    DATA.categories.forEach(cat=>{
+      let items=shuffle(catItems(cat));
+      if(q) items=items.filter(p=>matchQ(p,q));
+      if(!items.length) return;
+      total+=items.length;
+      html += '<div class="sec"><h2><span>'+(cat.icon||'')+'</span> '+cat.label+'</h2><span class="c">'+items.length+'</span><span class="line"></span></div>';
+      html += '<div class="gallery">'+items.map((p,i)=>cardHTML(p,i)).join('')+'</div>';
+    });
+    document.getElementById('count').textContent = total + ' posters';
+    document.getElementById('pager').innerHTML='';
+    c.innerHTML = total ? html : '<div class="empty"><div class="big">📭</div>अभी कोई poster नहीं है। Manifest में जोड़ें।</div>';
+  }
+
+  function renderPager(pages){
+    const el=document.getElementById('pager');
+    if(pages<=1){ el.innerHTML=''; return; }
+    let html='<button '+(page===1?'disabled':'')+' onclick="gotoPage('+(page-1)+')">‹</button>';
+    const win=[];
+    for(let p=1;p<=pages;p++){
+      if(p===1||p===pages||(p>=page-1&&p<=page+1)) win.push(p);
+      else if(win[win.length-1]!=='...') win.push('...');
+    }
+    win.forEach(p=>{
+      if(p==='...') html+='<span class="dots">…</span>';
+      else html+='<button class="'+(p===page?'active':'')+'" onclick="gotoPage('+p+')">'+p+'</button>';
+    });
+    html+='<button '+(page===pages?'disabled':'')+' onclick="gotoPage('+(page+1)+')">›</button>';
+    el.innerHTML=html;
+  }
+
+  function gotoPage(p){ page=p; render(); document.querySelector('.toolbar').scrollIntoView({behavior:'smooth', block:'start'}); }
+
+  function heroSearch(e){
+    e.preventDefault();
+    const v=document.getElementById('heroInput').value;
+    go('all');
+    document.getElementById('search').value=v;
+    renderAll();
+    document.querySelector('.toolbar').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  function absUrl(src){ return new URL(src, location.href).href; }
+
+  function shareTo(net, src){
+    const img = absUrl(src);
+    const text = ABOUT + '\n' + SITE;
+    const eText = encodeURIComponent(text);
+    const eImg  = encodeURIComponent(img);
+    const eBoth = encodeURIComponent(text + '\n' + img);
+    let u='';
+    if(net==='wa') u='https://wa.me/?text='+eBoth;
+    else if(net==='fb') u='https://www.facebook.com/sharer/sharer.php?u='+eImg+'&quote='+eText;
+    else if(net==='x') u='https://twitter.com/intent/tweet?text='+eText+'&url='+eImg;
+    else if(net==='ig'){ instaShare(img, text); return; }
+    window.open(u, '_blank', 'noopener,width=640,height=640');
+  }
+
+  function instaShare(img, text){
+    if(navigator.share){
+      navigator.share({ title:'PosterHub', text:text, url:img }).catch(()=>{});
+    } else {
+      try{ navigator.clipboard.writeText(text+'\n'+img); }catch(e){}
+      alert('Instagram पर share करने के लिए: पहले poster download करें, फिर Instagram app में upload करें। (link कॉपी हो गया है)');
+    }
+  }
+
+  function loadImg(src){ return new Promise((res,rej)=>{ const i=new Image(); i.crossOrigin='anonymous'; i.onload=()=>res(i); i.onerror=rej; i.src=src; }); }
+
+  async function makeWatermarked(src){
+    const img = await loadImg(src);
+    const cv = document.createElement('canvas');
+    cv.width = img.naturalWidth; cv.height = img.naturalHeight;
+    const ctx = cv.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    const fs = Math.max(cv.width*0.038, 14);
+    ctx.font = '700 '+fs+'px sans-serif';
+    ctx.textAlign='center'; ctx.textBaseline='bottom';
+    const y = cv.height*0.96;
+    ctx.lineWidth = Math.max(fs*0.08, 2);
+    ctx.strokeStyle = 'rgba(0,0,0,.4)';
+    ctx.strokeText(WM, cv.width/2, y);
+    ctx.fillStyle = 'rgba(255,255,255,.55)';
+    ctx.fillText(WM, cv.width/2, y);
+    return await new Promise(r=> cv.toBlob(r, 'image/jpeg', 0.92));
+  }
+
+  async function doDownload(src, title){
+    const name = (title||'poster').replace(/[^\w\u0900-\u097F-]+/g,'_') || 'poster';
+    try{
+      const blob = await makeWatermarked(src);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href=url; a.download=name+'.jpg';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url), 5000);
+    }catch(e){
+      const a = document.createElement('a'); a.href=src; a.download=name;
+      document.body.appendChild(a); a.click(); a.remove();
+    }
+  }
+
+  function dl(src, title){ dlPending={src:src, title:title}; openDl(); }
+
+  function openDl(){
+    const m=document.getElementById('dlModal'); m.classList.add('open');
+    const bar=document.getElementById('dlBar'), go=document.getElementById('dlGo'), st=document.getElementById('dlStatus');
+    let n=10;
+    go.disabled=true; go.textContent='⏳ रुकिए…';
+    st.innerHTML='Download शुरू होने में <b id="dlCount">'+n+'</b> सेकंड…';
+    bar.style.width='0%';
+    clearInterval(dlTimer);
+    dlTimer=setInterval(()=>{
+      n--;
+      const cEl=document.getElementById('dlCount'); if(cEl) cEl.textContent=n;
+      bar.style.width=((10-n)/10*100)+'%';
+      if(n<=0){ clearInterval(dlTimer); st.innerHTML='✅ आपका poster तैयार है!'; go.disabled=false; go.textContent='⬇ Download अब'; }
+    },1000);
+  }
+  function closeDl(){ clearInterval(dlTimer); document.getElementById('dlModal').classList.remove('open'); }
+
+  function openLb(src, title){
+    lbSrc=src; lbTitle=title||'PosterHub';
+    const safe=src.replace(/'/g,"\\'");
+    document.getElementById('lbImg').src=src;
+    document.getElementById('lbWm').textContent=WM;
+    document.getElementById('lbDl').onclick=()=>dl(lbSrc, lbTitle);
+    document.getElementById('lbShare').innerHTML=
+        '<button class="sh wa" title="WhatsApp" onclick="shareTo(\'wa\',\''+safe+'\')">'+IC.wa+'</button>'
+      + '<button class="sh fb" title="Facebook" onclick="shareTo(\'fb\',\''+safe+'\')">'+IC.fb+'</button>'
+      + '<button class="sh ig" title="Instagram" onclick="shareTo(\'ig\',\''+safe+'\')">'+IC.ig+'</button>'
+      + '<button class="sh x" title="X" onclick="shareTo(\'x\',\''+safe+'\')">'+IC.x+'</button>';
+    document.getElementById('lb').classList.add('open');
+  }
+  function closeLb(){ document.getElementById('lb').classList.remove('open'); }
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeLb(); closeDl(); closeDay(); } });
+
+  init();
+</script>
 </body>
 </html>

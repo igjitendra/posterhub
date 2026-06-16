@@ -6,7 +6,21 @@
     "watermark": "@JitendraUno",
     "shareText": "PosterHub से यह खूबसूरत poster 🌸 — रोज़ नए Good Morning, Good Night, Devotional और Festival posters फ़्री में डाउनलोड करें! 👇"
   },
-  "daily": { "folder": "assets/daily", "ext": "jpg" },
+  "daily": {
+    "base": "assets/daily",
+    "days": {
+      "16-06": { "label": "विशेष दिन (Demo)", "posters": [
+        { "file": "image1.jpg", "title": "Good Morning" },
+        { "file": "image2.jpg", "title": "Good Night" },
+        { "file": "image3.jpg", "title": "शुभ रविवार" },
+        { "file": "image4.jpg", "title": "सुप्रभात" }
+      ] },
+      "17-06": { "label": "Special Day", "posters": [
+        { "file": "image1.jpg", "title": "Good Night" },
+        { "file": "image2.jpg", "title": "शुभ रविवार" }
+      ] }
+    }
+  },
   "categories": [
     {
       "key": "good-morning",
