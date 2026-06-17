@@ -5,12 +5,12 @@
    हर category में 10–20 posters, और daily में पूरे साल (365+ दिन) की 10-10 entry।
 
    ⚠️ Image नाम का नियम (GitHub Pages case-sensitive है):
-     good-morning : assets/good-morning/gm1.jpg ... gm50.jpg
-     good-night   : assets/good-night/gn1.jpg ... gn50.jpg
-     devotional   : assets/devotional/<din>/<din>1.jpg ... <din>10.jpg   (sunday1.jpg आदि)
-     festival     : assets/festival/holi/holi1.jpg , assets/festival/diwali/diwali1.jpg ...
-     premium      : assets/premium/prem1.jpg ... prem12.jpg
-     daily        : assets/daily/DD-MM/image1.jpg ... image10.jpg   (जैसे assets/daily/17-06/image1.jpg)
+     good-morning : pro/assets/good-morning/gm1.jpg ... gm50.jpg
+     good-night   : pro/assets/good-night/gn1.jpg ... gn50.jpg
+     devotional   : pro/assets/devotional/<din>/<din>1.jpg ... <din>10.jpg   (sunday1.jpg आदि)
+     festival     : pro/assets/festival/holi/holi1.jpg , assets/festival/diwali/diwali1.jpg ...
+     premium      : pro/assets/premium/prem1.jpg ... prem12.jpg
+     daily        : pro/assets/daily/DD-MM/image1.jpg ... image10.jpg   (जैसे assets/daily/17-06/image1.jpg)
    जिस din/poster की image नहीं होगी, वहाँ placeholder दिखेगा (site नहीं टूटेगी)।
    ==================================================================== */
 (function () {
@@ -53,32 +53,32 @@
       shareText: "PosterHub Pro से यह खूबसूरत poster 🌸 — रोज़ नए premium posters फ़्री watermark के बिना!"
     },
     categories: [
-      { key: "good-morning", label: "Good Morning", icon: "🌅", folder: "assets/good-morning",
+      { key: "good-morning", label: "Good Morning", icon: "🌅", folder: "pro/assets/good-morning",
         posters: mk("gm", 50, { title: "Good Morning", personalize: true }) },
 
-      { key: "good-night", label: "Good Night", icon: "🌙", folder: "assets/good-night",
+      { key: "good-night", label: "Good Night", icon: "🌙", folder: "pro/assets/good-night",
         posters: mk("gn", 15, { title: "Good Night", personalize: true }) },
 
       { key: "devotional", label: "Devotional", icon: "🛕",
         subs: [
-          { key: "sunday",    label: "रविवार",  folder: "assets/devotional/sunday",    posters: mk("sunday", 10,    { title: "शुभ रविवार",  personalize: true }) },
-          { key: "monday",    label: "सोमवार",  folder: "assets/devotional/monday",    posters: mk("monday", 10,    { title: "शुभ सोमवार",  personalize: true }) },
-          { key: "tuesday",   label: "मंगलवार", folder: "assets/devotional/tuesday",   posters: mk("tuesday", 10,   { title: "शुभ मंगलवार", personalize: true }) },
-          { key: "wednesday", label: "बुधवार",  folder: "assets/devotional/wednesday", posters: mk("wednesday", 10, { title: "शुभ बुधवार",  personalize: true }) },
-          { key: "thursday",  label: "गुरुवार", folder: "assets/devotional/thursday",  posters: mk("thursday", 10,  { title: "शुभ गुरुवार", personalize: true }) },
-          { key: "friday",    label: "शुक्रवार", folder: "assets/devotional/friday",    posters: mk("friday", 10,    { title: "शुभ शुक्रवार", personalize: true }) },
-          { key: "saturday",  label: "शनिवार",  folder: "assets/devotional/saturday",  posters: mk("saturday", 10,  { title: "शुभ शनिवार",  personalize: true }) }
+          { key: "sunday",    label: "रविवार",  folder: "pro/assets/devotional/sunday",    posters: mk("sunday", 10,    { title: "शुभ रविवार",  personalize: true }) },
+          { key: "monday",    label: "सोमवार",  folder: "pro/assets/devotional/monday",    posters: mk("monday", 10,    { title: "शुभ सोमवार",  personalize: true }) },
+          { key: "tuesday",   label: "मंगलवार", folder: "pro/assets/devotional/tuesday",   posters: mk("tuesday", 10,   { title: "शुभ मंगलवार", personalize: true }) },
+          { key: "wednesday", label: "बुधवार",  folder: "pro/assets/devotional/wednesday", posters: mk("wednesday", 10, { title: "शुभ बुधवार",  personalize: true }) },
+          { key: "thursday",  label: "गुरुवार", folder: "pro/assets/devotional/thursday",  posters: mk("thursday", 10,  { title: "शुभ गुरुवार", personalize: true }) },
+          { key: "friday",    label: "शुक्रवार", folder: "pro/assets/devotional/friday",    posters: mk("friday", 10,    { title: "शुभ शुक्रवार", personalize: true }) },
+          { key: "saturday",  label: "शनिवार",  folder: "pro/assets/devotional/saturday",  posters: mk("saturday", 10,  { title: "शुभ शनिवार",  personalize: true }) }
         ] },
 
       { key: "festival", label: "Festival", icon: "🎉",
         subs: [
-          { key: "holi",   label: "Holi",   folder: "assets/festival/holi",   posters: mk("holi", 10,   { title: "Happy Holi",   personalize: true }) },
-          { key: "diwali", label: "Diwali", folder: "assets/festival/diwali", posters: mk("diwali", 10, { title: "Happy Diwali", personalize: true }) }
+          { key: "holi",   label: "Holi",   folder: "pro/assets/festival/holi",   posters: mk("holi", 10,   { title: "Happy Holi",   personalize: true }) },
+          { key: "diwali", label: "Diwali", folder: "pro/assets/festival/diwali", posters: mk("diwali", 10, { title: "Happy Diwali", personalize: true }) }
         ] }
     ],
 
-    premium: mk("prem", 12, { title: "Premium Poster", folder: "assets/premium", exclusive: true, personalize: true }),
+    premium: mk("prem", 12, { title: "Premium Poster", folder: "pro/assets/premium", exclusive: true, personalize: true }),
 
-    daily: { base: "assets/daily", days: days }
+    daily: { base: "pro/assets/daily", days: days }
   };
 })();
