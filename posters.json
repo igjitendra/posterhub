@@ -81,4 +81,4 @@
 
     daily: { base: "assets/daily", days: days }
   };
-})();
+})(); 
