@@ -264,7 +264,7 @@
 
   <header class="hdr">
     <a class="brand" href="#"><span class="logo">✦</span><span>Poster<span class="accent">Hub</span></span></a>
-    <a class="pro-btn" href="pro/index.html">⭐ Go Pro</a>
+    <a class="pro-btn" href="pro.html">⭐ Go Pro</a>
   </header>
 
   <section class="hero">
@@ -503,7 +503,7 @@
     const title='📅 '+label+(day&&day.label?' · '+day.label:'');
     const items=(day && day.posters) ? day.posters.map(function(p){ return {file:p.file, title:p.title, folder:base+'/'+key, subLabel:(day.label||label)}; }) : [];
     current={ key:'__daily__', _dailyTitle:title };
-    POOL=items;
+    POOL=items.reverse(); // latest सबसे ऊपर
     page=1;
     render();
     document.getElementById('content').scrollIntoView({behavior:'smooth', block:'start'});
@@ -557,7 +557,7 @@
     } else {
       (current.posters||[]).forEach(p=> raw.push({...p, folder:current.folder, subLabel:current.label}));
     }
-    POOL = shuffle(raw);
+    POOL = raw.reverse(); // latest (सबसे नई) सबसे ऊपर
     page = 1;
     render();
   }
@@ -612,7 +612,7 @@
     const c=document.getElementById('content');
     let html=''; let total=0;
     DATA.categories.forEach(cat=>{
-      let items=shuffle(catItems(cat));
+      let items=catItems(cat).reverse(); // latest सबसे ऊपर
       if(q) items=items.filter(p=>matchQ(p,q));
       if(!items.length) return;
       total+=items.length;
