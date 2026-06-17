@@ -177,7 +177,7 @@ async function dl(src,title,exclusive){
   const r=planRank();
   if(r<1){ toast('Download के लिए plan ज़रूरी है',false); navTo('#/pricing'); return; }
   if(exclusive&&r<2){ toast('यह poster सिर्फ Advance Plus में',false); navTo('#/pricing'); return; }
-  try{ const img=await loadImg(src); const cv=buildPosterCanvas(img,{topText:CFG.PAYEE_NAME||CFG.BRAND}); downloadCanvas(cv,fileName(title)); toast('Download हो रहा है ✓',true); }
+  try{ const img=await loadImg(src); const cv=buildPosterCanvas(img,{topText:CFG.WATERMARK||CFG.PAYEE_NAME||CFG.BRAND}); downloadCanvas(cv,fileName(title)); toast('Download हो रहा है ✓',true); }
   catch(e){ toast('Download नहीं हुआ',false); }
 }
 function loadImg(src){ return new Promise((res,rej)=>{ const im=new Image(); im.crossOrigin='anonymous'; im.onload=()=>res(im); im.onerror=()=>rej(new Error('img')); im.src=src; }); }
@@ -248,7 +248,7 @@ function edShape(sh){ ed.photo.shape=sh; document.querySelectorAll('.shape-btn')
 function edDownload(){
   if(!ed.photo.img){ toast('पहले अपनी फ़ोटो चुनें',false); return; }
   const name=(SESSION&&SESSION.name)?SESSION.name:'PosterHub';
-  const cv=buildPosterCanvas(ed.poster.img,{photo:ed.photo,topText:CFG.PAYEE_NAME||CFG.BRAND,bottomText:name});
+  const cv=buildPosterCanvas(ed.poster.img,{photo:ed.photo,topText:CFG.WATERMARK||CFG.PAYEE_NAME||CFG.BRAND,bottomText:name});
   downloadCanvas(cv,fileName(ed.title+'-my')); toast('Personalized poster download ✓',true);
 }
 function closeEditor(){ $('editor').classList.remove('open'); }
@@ -321,7 +321,7 @@ function doLogout(){ clearSession(); if(_dataLoaded) render(); toast('Logout ह
 /* ===================== PRICING + PAY ===================== */
 function renderPricing(){
   const badge=$('curPlanNote'); if(!badge) return;
-  if(loggedIn() && isActive()) badge.textContent='आपका मौजूदा plan: '+planLabel()+(SESSION.expiry?(' (तक '+SESSION.expiry+')'):'');
+  if(loggedIn() && isActive()) badge.textContent='��पका मौजूदा plan: '+planLabel()+(SESSION.expiry?(' (तक '+SESSION.expiry+')'):'');
   else badge.textContent='';
 }
 function choosePlan(id){

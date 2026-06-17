@@ -3,7 +3,7 @@
  */
 window.CONFIG = {
   // ✅ आपका Google Apps Script Web App URL (जुड़ गया)
-  API_URL: "https://script.google.com/macros/s/AKfycbyqu4AXY1Q_blxNbTqeIyRh0nUnXWvBN1zsn12bSLURIuIziyqcDmE2T6g89pwQk0LR/exec",
+  API_URL: "https://script.google.com/macros/s/AKfycbxMlRdolmRT-2IozhM4itnuYzynjAm-gQEan-0s8S4EBQ7mEE9NmVN4v5tVVibN51YA/exec",
 
   BRAND: "PosterHub Pro",
   // अपना domain यहाँ डालें (share links के लिए), जैसे "https://pro.yoursite.com/"
@@ -12,6 +12,9 @@ window.CONFIG = {
   // आपकी UPI डिटेल्स
   UPI_ID: "6387617678-2@okbizaxis",
   PAYEE_NAME: "PosterHub",
+
+  // download poster ke upar wala watermark text
+  WATERMARK: "PosterHab.vercel.app",
 
   PLANS: {
     plus:    { id: "plus",    name: "Poster Plus",  price: 30, rank: 1 },
