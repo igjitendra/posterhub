@@ -7,7 +7,7 @@
     "shareText": "PosterHub से यह खूबसूरत poster 🌸 — रोज़ नए Good Morning, Good Night, Devotional और Festival posters फ़्री में डाउनलोड करें! 👇"
   },
   "daily": {
-    "base": "assets/daily",
+    "base": "pro/assets/daily",
     "days": {
       "01-01": {
         "label": "1 जनवरी",
@@ -16486,7 +16486,7 @@
       "key": "good-morning",
       "label": "Good Morning",
       "icon": "🌅",
-      "folder": "assets/good-morning",
+      "folder": "pro/assets/good-morning",
       "posters": [
         {
           "file": "gm1.jpg",
@@ -17302,7 +17302,7 @@
       "key": "devotional",
       "label": "Devotional",
       "icon": "🪔",
-      "folder": "assets/devotional",
+      "folder": "pro/assets/devotional",
       "subs": [
         {
           "key": "sunday",
@@ -17514,7 +17514,7 @@
         {
           "key": "monday",
           "label": "सोमवार",
-          "folder": "assets/devotional/monday",
+          "folder": "pro/assets/devotional/monday",
           "posters": [
             {
               "file": "monday1.jpg",
@@ -17721,7 +17721,7 @@
         {
           "key": "tuesday",
           "label": "मंगलवार",
-          "folder": "assets/devotional/tuesday",
+          "folder": "pro/assets/devotional/tuesday",
           "posters": [
             {
               "file": "tuesday1.jpg",
@@ -17928,7 +17928,7 @@
         {
           "key": "wednesday",
           "label": "बुधवार",
-          "folder": "assets/devotional/wednesday",
+          "folder": "pro/assets/devotional/wednesday",
           "posters": [
             {
               "file": "wednesday1.jpg",
@@ -18135,7 +18135,7 @@
         {
           "key": "thursday",
           "label": "गुरुवार",
-          "folder": "assets/devotional/thursday",
+          "folder": "pro/assets/devotional/thursday",
           "posters": [
             {
               "file": "thursday1.jpg",
@@ -18342,7 +18342,7 @@
         {
           "key": "friday",
           "label": "शुक्रवार",
-          "folder": "assets/devotional/friday",
+          "folder": "pro/assets/devotional/friday",
           "posters": [
             {
               "file": "friday1.jpg",
@@ -18549,7 +18549,7 @@
         {
           "key": "saturday",
           "label": "शनिवार",
-          "folder": "assets/devotional/saturday",
+          "folder": "pro/assets/devotional/saturday",
           "posters": [
             {
               "file": "saturday1.jpg",
@@ -18759,7 +18759,7 @@
       "key": "festival",
       "label": "Festival",
       "icon": "🎪",
-      "folder": "assets/festival",
+      "folder": "pro/assets/festival",
       "subs": [
         {
           "key": "holi",
@@ -18811,7 +18811,7 @@
         {
           "key": "diwali",
           "label": "दिवाली",
-          "folder": "assets/festival/diwali",
+          "folder": "pro/assets/festival/diwali",
           "posters": [
             {
               "file": "diwali1.jpg",
