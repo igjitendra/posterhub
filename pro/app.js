@@ -126,6 +126,7 @@ function openDailyDay(el){
   $('subbar').style.display='none';
   const title='📅 '+label+(day&&day.label?' · '+day.label:'');
   POOL=(day&&day.posters)?day.posters.map(p=>({file:p.file,title:p.title||'Poster',folder:base+'/'+key,exclusive:false,personalize:false})):[];
+  POOL.reverse(); // latest सबसे ऊपर
   current={key:'__daily__',_dailyTitle:title}; page=1; render();
   $('content').scrollIntoView({behavior:'smooth',block:'start'});
 }
@@ -137,6 +138,7 @@ function go(key, subKey){
   else sub.style.display='none';
   if(subKey&&cat){ const s=cat.subs.find(x=>x.key===subKey); POOL=(s&&s.posters?s.posters:[]).map(p=>item(p,cat,s)); }
   else POOL=catItems(key);
+  POOL.reverse(); // latest (सबसे नई) सबसे ऊपर
   render();
 }
 function onSearch(){ page=1; render(); }
