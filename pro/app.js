@@ -158,9 +158,8 @@ function cardHTML(p,i){
   const src=absSrc(p), safe=src.replace(/'/g,"\\'"), jt=(p.title||'Poster').replace(/'/g,"\\'"), locked=!canAccess(p);
   const badge=p.exclusive?'<span class="tag excl">👑 Advance</span>':(p.personalize?'<span class="tag per">🎨 Personalize</span>':'');
   return `<div class="card" style="animation-delay:${(i*0.03).toFixed(2)}s">`
-    +`<div class="imgwrap" onclick="openLb('${safe}','${jt}')">${badge}<img loading="lazy" src="${src}" onerror="imgFallback(this)" alt="${(p.title||'').replace(/"/g,'&quot;')}">${locked?'<div class="lock">🔒</div>':''}</div>`
+    +`<div class="imgwrap" onclick="openLb('${safe}','${jt}',${p.exclusive?1:0})">${badge}<img loading="lazy" src="${src}" onerror="imgFallback(this)" alt="${(p.title||'').replace(/"/g,'&quot;')}">${locked?'<div class="lock">🔒</div>':''}</div>`
     +`<div class="cbody"><h4>${p.title||'Poster'}</h4>`
-    +`<button class="dl" onclick="dl('${safe}','${jt}',${p.exclusive?1:0})">⬇ Download</button>`
     +(p.personalize?`<button class="per-btn" onclick="openEditor('${safe}','${jt}')">🎨 अपनी फ़ोटो लगाएँ</button>`:'')
     +`<div class="share">`
     +`<button class="sh wa" onclick="shareTo('wa','${safe}')">${IC.wa}</button>`
@@ -264,25 +263,30 @@ function shareTo(net,src){
   else if(net==='ig'){ if(navigator.share){ navigator.share({title:'PosterHub',text,url}).catch(()=>{}); } else { try{ navigator.clipboard.writeText(url); }catch(e){} toast('Link copy हुआ — Instagram में paste करें',true); } return; }
   window.open(u,'_blank');
 }
-function openLb(src,title){ $('lbImg').src=src; $('lbCap').textContent=title||''; $('lb').classList.add('open'); }
+let _lb={src:'',title:'',exclusive:0};
+function openLb(src,title,exclusive){ _lb={src:src,title:title,exclusive:exclusive?1:0}; $('lbImg').src=src; $('lbCap').textContent=title||''; $('lb').classList.add('open'); }
+function lbDownload(){ dl(_lb.src,_lb.title,_lb.exclusive); }
 function closeLb(){ $('lb').classList.remove('open'); }
 
 /* ===================== AUTH (pages) ===================== */
 function updateAuthUI(){
-  const b=$('planBadge'), a=$('authBtn');
-  if(b&&a){
-    if(loggedIn()){ a.textContent='Logout'; a.onclick=doLogout; b.classList.remove('hidden');
-      if(isActive()){ b.textContent='👑 '+planLabel(); b.className='badge active'; } else { b.textContent='Free'; b.className='badge'; }
-    } else { a.textContent='Login'; a.onclick=()=>navTo('#/login'); b.classList.add('hidden'); }
+  const mn=$('menuName'), mp=$('menuPlan'), ma=$('menuAuth');
+  if(mn) mn.textContent = loggedIn()? (SESSION.name||'User') : 'Guest';
+  if(mp){
+    if(loggedIn()&&isActive()){ mp.textContent='👑 '+planLabel(); mp.className='menu-plan active'; }
+    else if(loggedIn()){ mp.textContent='Free plan'; mp.className='menu-plan'; }
+    else { mp.textContent='Login नहीं किया'; mp.className='menu-plan'; }
   }
-  // landing nav
+  if(ma){ if(loggedIn()){ ma.textContent='🚪 Logout'; ma.onclick=function(){ closeMenu(); doLogout(); }; } else { ma.textContent='🔑 Login'; ma.onclick=function(){ closeMenu(); navTo('#/login'); }; } }
   const nav=$('navAuth');
   if(nav){
     if(loggedIn()){ nav.innerHTML='<button class="nav-link" onclick="navTo(\'#/app\')">🖼️ Gallery</button><button class="nav-cta" onclick="doLogout()">Logout</button>'; }
     else{ nav.innerHTML='<button class="nav-link" onclick="navTo(\'#/login\')">Login</button><button class="nav-cta" onclick="navTo(\'#/signup\')">शुरू करें</button>'; }
   }
-  const hi=$('helloUser'); if(hi){ hi.textContent = loggedIn()? ('👋 '+(SESSION.name||'')) : ''; }
 }
+function toggleMenu(e){ if(e&&e.stopPropagation) e.stopPropagation(); const m=$('menuPop'); if(m) m.classList.toggle('open'); }
+function closeMenu(){ const m=$('menuPop'); if(m) m.classList.remove('open'); }
+document.addEventListener('click',function(e){ const m=$('menuPop'),b=$('menuBtn'); if(m&&m.classList.contains('open')&&!m.contains(e.target)&&e.target!==b){ m.classList.remove('open'); } });
 function openAuth(){ navTo('#/login'); }
 async function doSignup(){
   const name=($('suName').value||'').trim();
