@@ -5,7 +5,7 @@
    हर category में 10–20 posters, और daily में पूरे साल (365+ दिन) की 10-10 entry।
 
    ⚠️ Image नाम का नियम (GitHub Pages case-sensitive है):
-     good-morning : assets/good-morning/gm1.jpg ... gm15.jpg
+     good-morning : assets/good-morning/gm1.jpg ... gm50.jpg
      good-night   : assets/good-night/gn1.jpg ... gn15.jpg
      devotional   : assets/devotional/<din>/<din>1.jpg ... <din>10.jpg   (sunday1.jpg आदि)
      festival     : assets/festival/holi/holi1.jpg , assets/festival/diwali/diwali1.jpg ...
@@ -54,7 +54,7 @@
     },
     categories: [
       { key: "good-morning", label: "Good Morning", icon: "🌅", folder: "assets/good-morning",
-        posters: mk("gm", 15, { title: "Good Morning", personalize: true }) },
+        posters: mk("gm", 50, { title: "Good Morning", personalize: true }) },
 
       { key: "good-night", label: "Good Night", icon: "🌙", folder: "assets/good-night",
         posters: mk("gn", 15, { title: "Good Night", personalize: true }) },
