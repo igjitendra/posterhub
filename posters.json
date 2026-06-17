@@ -1,25 +1,7 @@
 {
   "site": {
     "brand": "PosterHub",
-    "tagline": "हज़ारों सुंदर posters — फ़्री Download करें",
-    "url": "",
-    "watermark": "@JitendraUno",
-    "shareText": "PosterHub से यह खूबसूरत poster 🌸 — रोज़ नए Good Morning, Good Night, Devotional और Festival posters फ़्री में डाउनलोड करें! 👇"
-  },
-  "daily": {
-    "base": "assets/daily",
-    "days": {
-      "16-06": { "label": "विशेष दिन (Demo)", "posters": [
-        { "file": "image1.jpg", "title": "Good Morning" },
-        { "file": "image2.jpg", "title": "Good Night" },
-        { "file": "image3.jpg", "title": "शुभ रविवार" },
-        { "file": "image4.jpg", "title": "सुप्रभात" }
-      ] },
-      "17-06": { "label": "Special Day", "posters": [
-        { "file": "image1.jpg", "title": "Good Night" },
-        { "file": "image2.jpg", "title": "शुभ रविवार" }
-      ] }
-    }
+    "tagline": "हज़ारों सुंदर posters — फ़्री Download करें"
   },
   "categories": [
     {
@@ -28,7 +10,7 @@
       "icon": "🌅",
       "folder": "assets/good-morning",
       "posters": [
-        { "file": "gm1.jpg", "title": "Good Morning" }
+        { "file": "gm1.jpg", "title": "Good Morning", "date": "2026-06-16" }
       ]
     },
     {
@@ -37,7 +19,7 @@
       "icon": "🌙",
       "folder": "assets/good-night",
       "posters": [
-        { "file": "gn1.jpg", "title": "शुभ रात्रि" }
+        { "file": "gn1.jpg", "title": "शुभ रात्रि", "date": "2026-06-16" }
       ]
     },
     {
@@ -53,7 +35,7 @@
         { "key": "friday",    "label": "शुक्रवार","folder": "assets/devotional/friday",    "posters": [] },
         { "key": "saturday",  "label": "शनिवार",  "folder": "assets/devotional/saturday",  "posters": [] },
         { "key": "sunday",    "label": "रविवार",  "folder": "assets/devotional/sunday",    "posters": [
-            { "file": "sunday1.jpg", "title": "शुभ रविवार" }
+            { "file": "sunday1.jpg", "title": "शुभ रविवार", "date": "2026-06-16" }
         ] }
       ]
     },
